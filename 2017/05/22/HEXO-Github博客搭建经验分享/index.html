@@ -1,0 +1,84 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description"><meta name="keywords" content="Hexo, Gruntjs, Nodejs, Reactjs, Vuejs"><title>HEXO+Github博客搭建经验分享 - ShirleyLab</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favico.jpg"></head><body><input id="navi" type="checkbox"><ul class="main-navication"><li><a href="/"><span>Home</span></a></li><li><a href="https://github.com/Four27"><span>Github</span></a></li><li><a href="https://www.v2ex.com/"><span>V2EX</span></a></li></ul><div class="wrapper" id="wrap"><div class="post-header"><label class="navi-button light" for="navi">MENU</label><img class="background" src="http://callfiles.ueibo.com/hexo-theme-laughing/page_background.jpg"><div class="post-title"><h1 class="title">HEXO+Github博客搭建经验分享</h1><ul class="meta"><li><i class="icon icon-author"></i>Shirley</li><li><i class="icon icon-clock"></i>6 Minutes</li><li><i class="icon icon-calendar"></i>2017年5月22日</li></ul></div></div><div class="article-content" style="max-width:800px"><p>搭建这个博客的时候看了网上的一些教程也踩了一些坑。所以把自己搭建博客中的收获分享出来，加深自己的记忆的同时，也希望能帮到和我遇到相同问题的胖友。说明：以下内容都是基于Windows的~</p>
+<h3 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h3><blockquote>
+<p>安装node</p>
+</blockquote>
+<p>Node的安装很简单，百度一下在官网就能下载，一路next。</p>
+<blockquote>
+<p>安装git</p>
+</blockquote>
+<p>为了把本地的hexo内容传到github上去。因此，同样你需要申请一个github账号。</p>
+<blockquote>
+<p>安装hexo</p>
+</blockquote>
+<p>可以到hexo官网上了解详细的命令行，不过安装命令行只需要</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-cli -g</div></pre></td></tr></table></figure>
+<p>如果想要检验hexo是否安装成功，可以使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo -v</div></pre></td></tr></table></figure>
+<p>查看安装情况。</p>
+<blockquote>
+<p>初始化</p>
+</blockquote>
+<p>这一步是为了初始化hexo博客的相关代码，依次输入以下命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo init &lt;folderName&gt;   //folderName可以自定义，如myBlog</div><div class="line">cd &lt;folderName&gt;</div><div class="line">npm install</div></pre></td></tr></table></figure>
+<p>执行完这一步你就可以在你的folderName这个目录下看到许多的文件，接下来就是执行命令在本地查看博客页面。</p>
+<blockquote>
+<p>本地运行</p>
+</blockquote>
+<p>输入下面的命令行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server</div></pre></td></tr></table></figure>
+<p>默认的端口号是4000，但是我的在4000上面就跑不起来，所以可以运行一下命令，自己定义端口号。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo server -p myPort   //myPot的值可以自定义，如5000</div></pre></td></tr></table></figure>
+<p>然后你就可以在浏览器端运行了，展示出来的页面是默认主题。</p>
+<h3 id="更换主题"><a href="#更换主题" class="headerlink" title="更换主题"></a>更换主题</h3><blockquote>
+<p>更换主题</p>
+</blockquote>
+<p>这一步建议在部署之前执行，hexo官网中有很多主题，你可以挑选一个你喜欢的然后进入github按照他的安装说明一步一步执行，不同的主题部署方法会有不同。当然你也可以自己修改代码自定义你喜欢的样式。</p>
+<h3 id="部署"><a href="#部署" class="headerlink" title="部署"></a>部署</h3><blockquote>
+<p>创建仓库</p>
+</blockquote>
+<p>首先你需要申请一个github账号，其次你需要新建一个仓库，名字可定义为：yourName.github.io</p>
+<blockquote>
+<p>完成对仓库的设置</p>
+</blockquote>
+<p>在网上看到很多朋友遇到最多的问题就是，部署完成后打开链接结果一直显示404。为了避免这种情况发生，你需要在github中完成相应的设置。</p>
+<p><img src="C:\Users\Yang\Desktop\FastStoneEditor2.jpg" alt="FastStoneEditor2"></p>
+<p><img src="C:\Users\Yang\Desktop\FastStoneEditor1.jpg" alt="FastStoneEditor1"></p>
+<p>这样你就可以放心地完成接下来的部署了。</p>
+<blockquote>
+<p>配置部署文件</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:                       //注意&apos;:&apos;后面要有空格</div><div class="line">  type: git</div><div class="line">  repository: https://github.com/leopardpan/leopardpan.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
+<p>其中repo项是之前Github上创建好的仓库的地址，可以通过如下图所示的方式得到：</p>
+<p><img src="C:\Users\Yang\Desktop\FastStoneEditor3.jpg" alt="FastStoneEditor3"></p>
+<p>执行如下命令才能使用git部署</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure>
+<blockquote>
+<p>部署博客</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">hexo generate</div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
+<p>这时候我们的博客已经部署到网上了，我们可以在浏览器地址输入栏输入我们的网址即可，如我的博客是：<a href="https://four27.github.io/" target="_blank" rel="external">https://four27.github.io/</a>。</p>
+<p>之后你可以根据需要修改博客中的相应信息以及博客主题。</p>
+<h3 id="写文章"><a href="#写文章" class="headerlink" title="写文章"></a>写文章</h3><blockquote>
+<p>写文章</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;postName&quot; #新建文章</div></pre></td></tr></table></figure>
+<p>运行后可在本地的source /posts目录下看到新建的文章，用markdown编辑器打开进行编辑保存。</p>
+<blockquote>
+<p>部署到giithub上</p>
+</blockquote>
+<p>每次写完文章，如想将文章部署到github上可依次完成以下命令。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo generate</div><div class="line">hexo deploy</div></pre></td></tr></table></figure>
+<h3 id="一些常用命令"><a href="#一些常用命令" class="headerlink" title="一些常用命令"></a>一些常用命令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">hexo new &quot;postName&quot;       #新建文章</div><div class="line">hexo new page &quot;pageName&quot;  #新建页面</div><div class="line">hexo generate             #生成静态页面至public目录</div><div class="line">hexo server               #开启预览访问端口（默认端口4000，&apos;ctrl + c&apos;关闭server）</div><div class="line">hexo deploy               #将.deploy目录部署到GitHub</div><div class="line">hexo help                 #查看帮助</div><div class="line">hexo version              #查看Hexo的版本</div></pre></td></tr></table></figure>
+</div><div class="article-meta" style="max-width:800px"></div><div class="article-comment" style="max-width:800px"><div class="ds-thread" id="ds-thread" data-thread-key="cj32oz5db0000m4vh40pjgz82" data-title="HEXO+Github博客搭建经验分享" data-url="http:/four27.com/2017/05/22/HEXO-Github博客搭建经验分享/" site-name="ueibo"></div><script>var siteName = document.getElementById('ds-thread').getAttribute('site-name');
+var duoshuoQuery = {short_name: siteName};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+  || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></div><ul class="navication"><li class="home"><a href="/"><i class="icon icon-home"></i></a></li><li><a href="/2017/05/20/hello-world/"><i class="icon icon-arror-right"></i></a></li></ul><div class="page-footer"><div class="top"><ul class="social"><li><a href="https://github.com/Four27" title="Github" target="_blank"><i class="icon icon-github"></i></a></li><li><a title="Weibo" target="_blank"><i class="icon icon-weibo"></i></a></li><li><a title="SegmentFault" target="_blank"><i class="icon icon-segmentfault"></i></a></li></ul></div><div class="bottom"><p class="copyright">© 2017 ShirleyLab<br><small>POWER BY <a href="https://hexo.io" target="_blank">HEXO</a></small><small>, THEME BY <a href="https://github.com/BoizZ/hexo-theme-laughing" target="_blank">LAUGHING</a></small></p></div></div></div><script>var wrap = document.getElementById('wrap');
+window.onload = function () {
+  wrap.className += ' done';
+}</script></body></html>
