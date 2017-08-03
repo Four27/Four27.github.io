@@ -1,0 +1,45 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"><meta name="format-detection" content="telephone=no"><meta name="format-detection" content="email=no"><meta name="description"><meta name="keywords" content="Hexo, Gruntjs, Nodejs, Reactjs, Vuejs"><title>JavaScript权威指南（第二章、第三章） - ShirleyLab</title><link rel="stylesheet" href="/css/main_style.min.css"><link rel="icon" href="/favico.jpg"></head><body><input id="navi" type="checkbox"><ul class="main-navication"><li><a href="/"><span>Home</span></a></li><li><a href="https://github.com/Four27"><span>Github</span></a></li><li><a href="https://www.v2ex.com/"><span>V2EX</span></a></li></ul><div class="wrapper" id="wrap"><div class="post-header"><label class="navi-button light" for="navi">MENU</label><img class="background" src="http://callfiles.ueibo.com/hexo-theme-laughing/page_background.jpg"><div class="post-title"><h1 class="title">JavaScript权威指南（第二章、第三章）</h1><ul class="meta"><li><i class="icon icon-author"></i>Shirley</li><li><i class="icon icon-clock"></i>6 Minutes</li><li><i class="icon icon-calendar"></i>2017年8月2日</li></ul></div></div><div class="article-content" style="max-width:800px"><h5 id="1、区分大小写"><a href="#1、区分大小写" class="headerlink" title="1、区分大小写"></a>1、区分大小写</h5><p>在js中是有大小写区别的，而在html中没有大小写之分。</p>
+<p>如：在设置时间处理程序时，html中可将onClick写成onclick，而在js中只能写成onClick。</p>
+<h5 id="2、数字"><a href="#2、数字" class="headerlink" title="2、数字"></a>2、数字</h5><h6 id="（1）不区分浮点数值和整数值"><a href="#（1）不区分浮点数值和整数值" class="headerlink" title="（1）不区分浮点数值和整数值"></a>（1）不区分浮点数值和整数值</h6><p>​      js中所有数字均用浮点数值表示。</p>
+<h6 id="（2）八进制"><a href="#（2）八进制" class="headerlink" title="（2）八进制"></a>（2）八进制</h6><p>​    ES6中八进制直接量是明令禁止的。</p>
+<h6 id="（3）浮点数直接量"><a href="#（3）浮点数直接量" class="headerlink" title="（3）浮点数直接量"></a>（3）浮点数直接量</h6><p>​    3.14</p>
+<p>​    .3333333</p>
+<p>​    6.02e23/6.02E23          //6.02×10^23</p>
+<h6 id="（4）算术运算"><a href="#（4）算术运算" class="headerlink" title="（4）算术运算"></a>（4）算术运算</h6><p>​    -infinity（负无穷大）</p>
+<p>​    NaN()（判断是否为数字）</p>
+<p>​    0.3-0.2 !== 0.2-0.1     (0.3-0.2=0.09999999999998)</p>
+<h6 id="（5）日期和时间"><a href="#（5）日期和时间" class="headerlink" title="（5）日期和时间"></a>（5）日期和时间</h6><p><img src="js第二章_日期.jpg" alt=""></p>
+<h5 id="3、文本"><a href="#3、文本" class="headerlink" title="3、文本"></a>3、文本</h5><p>   js中没有表示单个字符的“字符型”。</p>
+<h6 id="（1）字符串直接量"><a href="#（1）字符串直接量" class="headerlink" title="（1）字符串直接量"></a>（1）字符串直接量</h6><p>​    在ES5中字符串直接量可以拆分成数行，每行以反斜线 <code>\</code> 结束</p>
+<p><img src="js第三章_字符串.jpg" alt=""></p>
+<p>​    <code>\</code>也可用来转义。</p>
+<h6 id="（2）字符串的使用"><a href="#（2）字符串的使用" class="headerlink" title="（2）字符串的使用"></a>（2）字符串的使用</h6><p><img src="js第三章_字符串2.jpg" alt=""></p>
+<p>正则表达式（RegExp)的相关函数</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var text = &apos;testing: 1, 2, 3&apos;;</div><div class="line">var pattern = /\d+/g    //g表示在全局下匹配</div><div class="line">pattern.test(text);     //=&gt;true,检测是否匹配</div><div class="line">text.search(pattern);   //首次匹配成功的位置</div><div class="line">text.match(pattern);    //=&gt;[&apos;1&apos;,&apos;2&apos;,&apos;3&apos;]所有匹配组成的数组</div><div class="line">text.replace(pattern, &apos;#&apos;);  //=&gt;testing:#,#,#</div><div class="line">text.split(/\d+/);</div></pre></td></tr></table></figure>
+<h5 id="4、null-amp-undefined"><a href="#4、null-amp-undefined" class="headerlink" title="4、null &amp; undefined"></a>4、null &amp; undefined</h5><p>undefined表示系统级的、出乎意料的或<code>类似错误的值</code>的空缺，而<code>null</code>是表示程序及的、正常的或意料之中的值的空缺。</p>
+<p>如果想将他们复制给变量或者属性，或将它们作为参数传入函数，最佳选择是使用null。</p>
+<h5 id="5、不可变的原始值和可变的对象引用"><a href="#5、不可变的原始值和可变的对象引用" class="headerlink" title="5、不可变的原始值和可变的对象引用"></a>5、不可变的原始值和可变的对象引用</h5><p>原始值：undefined、null、布尔值、数字、字符串</p>
+<p>对象：数组、函数</p>
+<h6 id="（1）原始值不可更改：任何方法都无法更改一个原始值。"><a href="#（1）原始值不可更改：任何方法都无法更改一个原始值。" class="headerlink" title="（1）原始值不可更改：任何方法都无法更改一个原始值。"></a>（1）原始值不可更改：任何方法都无法更改一个原始值。</h6><p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var s = &apos;hello&apos;;</div><div class="line">s.toUpperCase();    //返回&apos;HELLO&apos;,但并没有改变s的值</div><div class="line">s;         //=&gt;&apos;hello&apos;:原始字符串的值并未改变</div></pre></td></tr></table></figure>
+<p>原始值的比较是值的比较。</p>
+<h6 id="（2）对象是可变的——它们的值是可修改的"><a href="#（2）对象是可变的——它们的值是可修改的" class="headerlink" title="（2）对象是可变的——它们的值是可修改的"></a>（2）对象是可变的——它们的值是可修改的</h6><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var o = &#123;x:1&#125;;</div><div class="line">o.x = 2;     //可改变对象值</div><div class="line">o.y = 3;     //可增加一个新属性</div><div class="line">数组也具有相同的属性</div></pre></td></tr></table></figure>
+<p>对象的比较并非值的比较，两个包含相同属性及相同值的对象，他们也是不相等的。各个索引元素完全相等的两个数组也不相等。当且仅当他们引用同一个基对象时，它们才相等。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = [];</div><div class="line">var b = a;</div><div class="line">b[0] = 1;</div><div class="line">a[0]     //=&gt;1:变量a的值也会修改</div><div class="line">a ==== b  //=&gt;true</div></pre></td></tr></table></figure>
+<p>如果想得到一个对象或数组的副本，则必须显示复制对象的每一个属性或数组的每一个元素。例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = [&apos;a&apos;, &apos;b&apos;, &apos;c&apos;];</div><div class="line">var b = [];</div><div class="line">for (var i = 0; i &lt; a.length; i++) &#123;</div><div class="line">  b[i] = a[i];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h5 id="6、显示类型转换"><a href="#6、显示类型转换" class="headerlink" title="6、显示类型转换"></a>6、显示类型转换</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var n = 123456.789;</div><div class="line">n.toFixed(0);   //&apos;123457&apos; 根据小数点后的指定位数将数字转换为字符串，四舍五入</div><div class="line">n.toFixed(2);   //&apos;123456.79&apos;  同上，四舍五入</div><div class="line">n.toFixed(5);   //&apos;123456.78900&apos;  填充0</div><div class="line"></div><div class="line">n.toExponential(1);   //</div></pre></td></tr></table></figure>
+</div><div class="article-meta" style="max-width:800px"></div><div class="article-comment" style="max-width:800px"><div class="ds-thread" id="ds-thread" data-thread-key="cj5wby8cq0001wgvhpg99ogw1" data-title="JavaScript权威指南（第二章、第三章）" data-url="http:/four27.com/2017/08/02/JavaScript权威指南（第二、三章）/" site-name="ueibo"></div><script>var siteName = document.getElementById('ds-thread').getAttribute('site-name');
+var duoshuoQuery = {short_name: siteName};
+(function() {
+  var ds = document.createElement('script');
+  ds.type = 'text/javascript';ds.async = true;
+  ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+  ds.charset = 'UTF-8';
+  (document.getElementsByTagName('head')[0] 
+  || document.getElementsByTagName('body')[0]).appendChild(ds);
+})();</script></div><ul class="navication"><li class="home"><a href="/"><i class="icon icon-home"></i></a></li><li><a href="/2017/07/16/Git常用命令行/"><i class="icon icon-arror-right"></i></a></li></ul><div class="page-footer"><div class="top"><ul class="social"><li><a href="https://github.com/Four27" title="Github" target="_blank"><i class="icon icon-github"></i></a></li><li><a title="Weibo" target="_blank"><i class="icon icon-weibo"></i></a></li><li><a title="SegmentFault" target="_blank"><i class="icon icon-segmentfault"></i></a></li></ul></div><div class="bottom"><p class="copyright">© 2017 ShirleyLab<br><small>POWER BY <a href="https://hexo.io" target="_blank">HEXO</a></small><small>, THEME BY <a href="https://github.com/BoizZ/hexo-theme-laughing" target="_blank">LAUGHING</a></small></p></div></div></div><script>var wrap = document.getElementById('wrap');
+window.onload = function () {
+  wrap.className += ' done';
+}</script></body></html>
