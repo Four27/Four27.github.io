@@ -363,10 +363,35 @@
 <blockquote>
 <p>a = b * 2;</p>
 </blockquote>
-<h4 id="执行程序"><a href="#执行程序" class="headerlink" title="执行程序"></a>执行程序</h4><p>a = b * 2这样的语句，对于开发者的书写和阅读有好处，但不是计算机可以直接执行的形式。需要计算机上的特殊程序（一个解释器或一个编译器）将你写的代码转换成计算机可以理解的代码。</p>
+<h4 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h4><p>a = b * 2这样的语句，对于开发者的书写和阅读有好处，但不是计算机可以直接执行的形式。需要计算机上的特殊程序（一个解释器或一个编译器）将你写的代码转换成计算机可以理解的代码。</p>
 <p>对于有些计算机语言，每次语句执行时，是自上而下逐行翻译的。这通常被称为解释器。</p>
-<p>对于其他的语言，翻译是提前完成的，称为编译代码。</p>
-
+<p>对于其他的语言，翻译是提前完成的，称为编译代码。所以当程序运行时，实际上是运行的已经编译好的程序。</p>
+<h4 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h4><p>尝试在浏览器的控制台中运行以下代码（对于控制台中的换行可使用:<code>shift + enter</code>，运行代码则使用:<code>enter</code>）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = 21;</div><div class="line">b = a * 2;</div><div class="line">console.log( b );</div></pre></td></tr></table></figure>
+<p>输出结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">42</div></pre></td></tr></table></figure>
+<h4 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h4><p>在上面代码中：</p>
+<p><code>log(b)</code>：是一个函数调用，表示将b变量的值输出到控制台上。</p>
+<p><code>console.</code>：标明输出的位置为控制台。</p>
+<p>同样我们也可以用<code>alert(b)</code>来输出b的值，只不过此时的b值是在页面的弹出框中显示的。</p>
+<h4 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h4><p>在HTML中我们通常运用表单元素让用户输入值，然后用js读取输入值实现输出。但我们可以用一种更简单的方式是实现这一过程，即运用<code>prompt(...)</code>函数。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">age = prompt(&apos;please tell me you age:&apos;);</div><div class="line">console.log(age);</div><div class="line"></div><div class="line">注：这段代码运行时首先弹出一个对话框提示用户输入一个值赋给age，再通过控制台输出age值。</div></pre></td></tr></table></figure>
+<p>运行结果：</p>
+<p><img src="js-up&amp;going1.jpg" alt=""></p>
+<p><img src="js-up&amp;going2.jpg" alt=""></p>
+<h3 id="·值-amp-类型"><a href="#·值-amp-类型" class="headerlink" title="·值 &amp; 类型"></a>·值 &amp; 类型</h3><p>js中值的类型主要包含七中（第七种是ES6中新加入的）:Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）、原始数据类型 （Symbol）。</p>
+<h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><p>利用内置函数Number将字符串强制转换成数值：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = &quot;42&quot;;</div><div class="line">var b = Number( a );</div><div class="line"></div><div class="line">console.log( a ); // &quot;42&quot;</div><div class="line">console.log( b ); // 42</div></pre></td></tr></table></figure>
+<p>但是 强制转换旺旺会因为不熟悉其中的规则，造成很多麻烦。</p>
+<h4 id="代码注释"><a href="#代码注释" class="headerlink" title="代码注释"></a>代码注释</h4><p>对于代码注释应该注意以下几点：</p>
+<ul>
+<li>没有注释的代码是不合格的代码。</li>
+<li>过多的注释（例如每行一个注释）可能是代码写的不好的标志。</li>
+<li>注释应该解释<strong>为什么</strong>，而不是<strong>这是什么</strong>。如果代码容易引起混乱，注释也能对代码做出解释。</li>
+</ul>
+<p>对于代码注释，<code>/* .. */</code>类型的注释可以出现在语句中间，但<code>//</code>类型的注释则不行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = /* arbitrary value */ 42;</div><div class="line"></div><div class="line">console.log( a ); // 42</div></pre></td></tr></table></figure>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4>
           
         
       
