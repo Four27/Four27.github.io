@@ -366,7 +366,7 @@
 <h4 id="运行程序"><a href="#运行程序" class="headerlink" title="运行程序"></a>运行程序</h4><p>a = b * 2这样的语句，对于开发者的书写和阅读有好处，但不是计算机可以直接执行的形式。需要计算机上的特殊程序（一个解释器或一个编译器）将你写的代码转换成计算机可以理解的代码。</p>
 <p>对于有些计算机语言，每次语句执行时，是自上而下逐行翻译的。这通常被称为解释器。</p>
 <p>对于其他的语言，翻译是提前完成的，称为编译代码。所以当程序运行时，实际上是运行的已经编译好的程序。</p>
-<h4 id="小试牛刀"><a href="#小试牛刀" class="headerlink" title="小试牛刀"></a>小试牛刀</h4><p>尝试在浏览器的控制台中运行以下代码（对于控制台中的换行可使用:<code>shift + enter</code>，运行代码则使用:<code>enter</code>）。</p>
+<h4 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h4><p>尝试在浏览器的控制台中运行以下代码（对于控制台中的换行可使用:<code>shift + enter</code>，运行代码则使用:<code>enter</code>）。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = 21;</div><div class="line">b = a * 2;</div><div class="line">console.log( b );</div></pre></td></tr></table></figure>
 <p>输出结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">42</div></pre></td></tr></table></figure>
@@ -381,8 +381,8 @@
 <p><img src="js-up&amp;going2.jpg" alt=""></p>
 <h3 id="·值-amp-类型"><a href="#·值-amp-类型" class="headerlink" title="·值 &amp; 类型"></a>·值 &amp; 类型</h3><p>js中值的类型主要包含七中（第七种是ES6中新加入的）:Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）、原始数据类型 （Symbol）。</p>
 <h4 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h4><p>利用内置函数Number将字符串强制转换成数值：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = &quot;42&quot;;</div><div class="line">var b = Number( a );</div><div class="line"></div><div class="line">console.log( a ); // &quot;42&quot;</div><div class="line">console.log( b ); // 42</div></pre></td></tr></table></figure>
-<p>但是 强制转换旺旺会因为不熟悉其中的规则，造成很多麻烦。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = &quot;42&quot;;</div><div class="line">var b = Number( a );</div><div class="line"></div><div class="line">console.log( a ); // &quot;42&quot;</div><div class="line">console.log( b ); // 42</div><div class="line"></div><div class="line">注：强制转换为字符串类型：String()</div></pre></td></tr></table></figure>
+<p>但是 强制转换往往会因为不熟悉其中的规则，造成很多麻烦。</p>
 <h4 id="代码注释"><a href="#代码注释" class="headerlink" title="代码注释"></a>代码注释</h4><p>对于代码注释应该注意以下几点：</p>
 <ul>
 <li>没有注释的代码是不合格的代码。</li>
@@ -391,7 +391,23 @@
 </ul>
 <p>对于代码注释，<code>/* .. */</code>类型的注释可以出现在语句中间，但<code>//</code>类型的注释则不行：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = /* arbitrary value */ 42;</div><div class="line"></div><div class="line">console.log( a ); // 42</div></pre></td></tr></table></figure>
-<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4>
+<h4 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h4><p>主要介绍在js中，变量的声明不会区分值的种类，即声明一个变量后值可以为任意类型。</p>
+<p>对于值不会发生改变的声明，变量通常用大写命名，多个单词间用<code>_</code>隔开，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var TAX_RATE = 0.08; // 8% sales tax</div><div class="line">var amount = 99.99;</div><div class="line">amount = amount * 2;</div><div class="line">amount = amount + (amount * TAX_RATE);</div><div class="line">console.log( amount ); // 215.9784</div><div class="line">console.log( amount.toFixed( 2 ) ); // &quot;215.98&quot;</div><div class="line"></div><div class="line">注：toFixed(n)是一个函数，它将number值四舍五入n位小数，并将四舍五入后的值转换为字符型。</div></pre></td></tr></table></figure>
+<p>在ES6中，声明不能改变的常量通常使用<code>const</code>而不用<code>var</code>，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// as of ES6:</div><div class="line">const TAX_RATE = 0.08;</div><div class="line"></div><div class="line">var amount = 99.99;</div></pre></td></tr></table></figure>
+<p>不能改变其值的常量就像变量一样有用，并且常量防止了在其初始化赋值之后，在其他某处进行意外的修改。如果你试图在第一次声明常量<code>TAX_RATE</code>之后，又给它赋予一个不同的值，你的程序会拒绝这次改变。</p>
+<h4 id="块"><a href="#块" class="headerlink" title="块"></a>块</h4><p>在JavaScript中，块即是定义在一对花括号<code>{ .. }</code>中的一条或多条语句。</p>
+<h4 id="条件语句"><a href="#条件语句" class="headerlink" title="条件语句"></a>条件语句</h4><p>主要讲的就是<code>if</code>语句的使用</p>
+<h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><p>主要讲的就是<code>do...while</code>, <code>while</code>,  <code>for</code>循环。</p>
+<h4 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h4><p>主要讲的就是函数，但其中有一个点需要注意，js中可以直接调用全局变量中的一个参数而不需要传参。如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function printAmount() &#123;</div><div class="line">	console.log( amount.toFixed( 2 ) );</div><div class="line">&#125; </div><div class="line">var amount = 99.99;</div><div class="line">printAmount(); // &quot;99.99&quot;</div><div class="line"></div><div class="line">amount = amount * 2;</div><div class="line">printAmount(); // &quot;199.98&quot;</div></pre></td></tr></table></figure>
+<h4 id="作用域"><a href="#作用域" class="headerlink" title="作用域"></a>作用域</h4><p>总的概括就是说，作用域内层可以访问位于它外层的任意变量。</p>
+<h3 id="·小试牛刀"><a href="#·小试牛刀" class="headerlink" title="·小试牛刀"></a>·小试牛刀</h3><h4 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h4><ul>
+<li>编写一个程序去计算手机的总价格，当你银行账户里面的钱用光的时候，你才能停止购买。你也可以为你的手机购买一些配件，只要价格在你的心理承受价格之下。</li>
+<li>计算出购买金额后，添加税款，然后用正确格式打印出实际购买金额。</li>
+</ul>
+
           
         
       
