@@ -101,14 +101,14 @@
 <meta property="og:url" content="http:/four27.com/2017/08/02/JavaScript权威指南（第二、三章）/index.html">
 <meta property="og:site_name" content="Shirley&#39;s Blog">
 <meta property="og:description" content="1、区分大小写在js中是有大小写区别的，而在html中没有大小写之分。 如：在设置时间处理程序时，html中可将onClick写成onclick，而在js中只能写成onClick。 2、数字（1）不区分浮点数值和整数值​      js中所有数字均用浮点数值表示。 （2）八进制​    ES6中八进制直接量是明令禁止的。 （3）浮点数直接量​    3.14 ​    .3333333 ​">
-<meta property="og:image" content="http:/four27.com/2017/08/02/JavaScript权威指南（第二、三章）/js第二章_日期.jpg">
-<meta property="og:image" content="http:/four27.com/2017/08/02/JavaScript权威指南（第二、三章）/js第三章_字符串.jpg">
-<meta property="og:image" content="http:/four27.com/2017/08/02/JavaScript权威指南（第二、三章）/js第三章_字符串2.jpg">
+<meta property="og:image" content="http:/08/02/JavaScript权威指南（第二、三章）/js第二章_日期.jpg">
+<meta property="og:image" content="http:/08/02/JavaScript权威指南（第二、三章）/js第三章_字符串.jpg">
+<meta property="og:image" content="http:/08/02/JavaScript权威指南（第二、三章）/js第三章_字符串2.jpg">
 <meta property="og:updated_time" content="2017-08-09T09:52:34.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript权威指南（第二章、第三章）">
 <meta name="twitter:description" content="1、区分大小写在js中是有大小写区别的，而在html中没有大小写之分。 如：在设置时间处理程序时，html中可将onClick写成onclick，而在js中只能写成onClick。 2、数字（1）不区分浮点数值和整数值​      js中所有数字均用浮点数值表示。 （2）八进制​    ES6中八进制直接量是明令禁止的。 （3）浮点数直接量​    3.14 ​    .3333333 ​">
-<meta name="twitter:image" content="http:/four27.com/2017/08/02/JavaScript权威指南（第二、三章）/js第二章_日期.jpg">
+<meta name="twitter:image" content="http:/08/02/JavaScript权威指南（第二、三章）/js第二章_日期.jpg">
 
 
 
@@ -347,12 +347,12 @@
 <h6 id="（4）算术运算"><a href="#（4）算术运算" class="headerlink" title="（4）算术运算"></a>（4）算术运算</h6><p>​    -infinity（负无穷大）</p>
 <p>​    NaN()（判断是否为数字）</p>
 <p>​    0.3-0.2 !== 0.2-0.1     (0.3-0.2=0.09999999999998)</p>
-<h6 id="（5）日期和时间"><a href="#（5）日期和时间" class="headerlink" title="（5）日期和时间"></a>（5）日期和时间</h6><p><img src="js第二章_日期.jpg" alt=""></p>
+<h6 id="（5）日期和时间"><a href="#（5）日期和时间" class="headerlink" title="（5）日期和时间"></a>（5）日期和时间</h6><p><img src="/08/02/JavaScript权威指南（第二、三章）/js第二章_日期.jpg" alt=""></p>
 <h5 id="3、文本"><a href="#3、文本" class="headerlink" title="3、文本"></a>3、文本</h5><p>   js中没有表示单个字符的“字符型”。</p>
 <h6 id="（1）字符串直接量"><a href="#（1）字符串直接量" class="headerlink" title="（1）字符串直接量"></a>（1）字符串直接量</h6><p>​    在ES5中字符串直接量可以拆分成数行，每行以反斜线 <code>\</code> 结束</p>
-<p><img src="js第三章_字符串.jpg" alt=""></p>
+<p><img src="/08/02/JavaScript权威指南（第二、三章）/js第三章_字符串.jpg" alt=""></p>
 <p>​    <code>\</code>也可用来转义。</p>
-<h6 id="（2）字符串的使用"><a href="#（2）字符串的使用" class="headerlink" title="（2）字符串的使用"></a>（2）字符串的使用</h6><p><img src="js第三章_字符串2.jpg" alt=""></p>
+<h6 id="（2）字符串的使用"><a href="#（2）字符串的使用" class="headerlink" title="（2）字符串的使用"></a>（2）字符串的使用</h6><p><img src="/08/02/JavaScript权威指南（第二、三章）/js第三章_字符串2.jpg" alt=""></p>
 <p>正则表达式（RegExp)的相关函数</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var text = &apos;testing: 1, 2, 3&apos;;</div><div class="line">var pattern = /\d+/g    //g表示在全局下匹配</div><div class="line">pattern.test(text);     //=&gt;true,检测是否匹配</div><div class="line">text.search(pattern);   //首次匹配成功的位置</div><div class="line">text.match(pattern);    //=&gt;[&apos;1&apos;,&apos;2&apos;,&apos;3&apos;]所有匹配组成的数组</div><div class="line">text.replace(pattern, &apos;#&apos;);  //=&gt;testing:#,#,#</div><div class="line">text.split(/\d+/);</div></pre></td></tr></table></figure>
 <h5 id="4、null-amp-undefined"><a href="#4、null-amp-undefined" class="headerlink" title="4、null &amp; undefined"></a>4、null &amp; undefined</h5><p>undefined表示系统级的、出乎意料的或<code>类似错误的值</code>的空缺，而<code>null</code>是表示程序及的、正常的或意料之中的值的空缺。</p>
@@ -488,7 +488,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -510,7 +510,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
