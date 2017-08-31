@@ -101,7 +101,7 @@
 <meta property="og:url" content="http:/four27.com/2017/08/28/You don't know js (scope&closures) 学习笔记/index.html">
 <meta property="og:site_name" content="Shirley&#39;s Blog">
 <meta property="og:description" content="第一章：什么是作用域？编译器理论js是一种编译型语言，它 不是 像许多传统意义上的编译型语言那样预先被编译好，编译的结果也不能在各种不同的分布式系统间移植。 传统编译型语言处理，一块代码执行之前的处理分为三个步骤，成为“编译”：  词法分析 语法分析 代码生成  和大多数其他语言的编译器一样，JavaScript 引擎要比这区区三步复杂太多了。 其一，JavaScript 引擎没有（像其他语言的编">
-<meta property="og:updated_time" content="2017-08-31T05:20:53.047Z">
+<meta property="og:updated_time" content="2017-08-31T12:59:41.362Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="You don&#39;t know js (scope&amp;closures) 学习笔记">
 <meta name="twitter:description" content="第一章：什么是作用域？编译器理论js是一种编译型语言，它 不是 像许多传统意义上的编译型语言那样预先被编译好，编译的结果也不能在各种不同的分布式系统间移植。 传统编译型语言处理，一块代码执行之前的处理分为三个步骤，成为“编译”：  词法分析 语法分析 代码生成  和大多数其他语言的编译器一样，JavaScript 引擎要比这区区三步复杂太多了。 其一，JavaScript 引擎没有（像其他语言的编">
@@ -374,7 +374,75 @@
 <p>1、遇到 <code>var a</code>，<em>编译器</em> 让 <em>作用域</em> 去查看对于这个特定的作用域集合，变量 <code>a</code> 是否已经存在了。如果是，<em>编译器</em> 就忽略这个声明并继续前进。否则，<em>编译器</em> 就让 <em>作用域</em> 去为这个作用域集合声明一个称为 <code>a</code> 的新变量。</p>
 <p>2、然后 <em>编译器</em> 为 <em>引擎</em> 生成稍后要执行的代码，来处理赋值 <code>a = 2</code>。<em>引擎</em> 运行的代码首先让 <em>作用域</em> 去查看在当前的作用域集合中是否有一个称为 <code>a</code> 的变量可以访问。如果有，<em>引擎</em> 就使用这个变量。如果没有，<em>引擎</em> 就查看 <em>其他地方</em>。如果 <em>引擎</em> 最终找到一个变量，它就将值 <code>2</code> 赋予它。如果没有，<em>引擎</em> 将会举起它的手并喊出一个错误！</p>
 <p>总结来说：对于一个变量赋值，发生了两个不同的动作：第一，<em>编译器</em> 声明一个变量（如果先前没有在当前作用域中声明过），第二，当执行时，<em>引擎</em> 在 <em>作用域</em> 中查询这个变量并给它赋值，如果找到的话。</p>
-<h3 id="编译器术语"><a href="#编译器术语" class="headerlink" title="编译器术语"></a>编译器术语</h3>
+<h3 id="编译器术语"><a href="#编译器术语" class="headerlink" title="编译器术语"></a>编译器术语</h3><p><strong>RHS（right hand side）查询 &amp; LHS（left hand side）查询</strong></p>
+<p>换言之，当一个变量出现在赋值操作的左手边时，会进行 LHS 查询，当一个变量出现在赋值操作的右手边时，会进行 RHS 查询。更简单的理解RHS：意味着“取得他/她的源（值）”，暗示着 RHS 的意思是“去取……的值“。例：</p>
+<blockquote>
+<p>console.log( a );</p>
+</blockquote>
+<p>这个指向 <code>a</code> 的引用是一个 RHS 引用，因为这里没有东西被赋值给 <code>a</code>。而是我们在查询 <code>a</code> 并取得它的值，这样这个值可以被传递进 <code>console.log(..)</code>。</p>
+<p>作为对比：</p>
+<blockquote>
+<p>a = 2;</p>
+</blockquote>
+<p>这里指向 <code>a</code> 的引用是一个 LHS 引用，因为我们实际上不关心当前的值是什么，我们只是想找到这个变量，将它作为 <code>= 2</code> 赋值操作的目标。</p>
+<h3 id="引擎-amp-作用域对话"><a href="#引擎-amp-作用域对话" class="headerlink" title="引擎 &amp; 作用域对话"></a>引擎 &amp; 作用域对话</h3><p>这是解释RHS和LHS更具体的一个栗子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">	console.log( a ); // 2</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( 2 );</div></pre></td></tr></table></figure>
+<p>让我们将上面的（处理这个代码段的）交互想象为一场对话。这场对话将会有点儿像这样进行：</p>
+<blockquote>
+<p><strong>引擎</strong>：嘿 <em>作用域</em>，我有一个 <code>foo</code> 的 RHS 引用。听说过它吗？</p>
+<p><strong>作用域</strong>；啊，是的，听说过。<em>编译器</em> 刚在一秒钟之前声明了它。它是一个函数。给你。</p>
+<p><strong>引擎</strong>：太棒了，谢谢！好的，我要执行 <code>foo</code> 了。</p>
+<p><strong>引擎</strong>：嘿，<em>作用域</em>，我得到了一个 <code>a</code> 的 LHS 引用，听说过它吗？</p>
+<p><strong>作用域</strong>：啊，是的，听说过。<em>编译器</em> 刚才将它声明为 <code>foo</code> 的一个正式参数了。给你。</p>
+<p><strong>引擎</strong>：一如既往的给力，<em>作用域</em>。再次感谢你。现在，该把 <code>2</code> 赋值给 <code>a</code> 了。</p>
+<p><strong>引擎</strong>：嘿，<em>作用域</em>，很抱歉又一次打扰你。我需要 RHS 查询 <code>console</code>。听说过它吗？</p>
+<p><strong>作用域</strong>：没关系，<em>引擎</em>，这是我一天到晚的工作。是的，我得到 <code>console</code> 了。它是一个内建对象。给你。</p>
+<p><strong>引擎</strong>：完美。查找 <code>log(..)</code>。好的，很好，它是一个函数。</p>
+<p><strong>引擎</strong>：嘿，<em>作用域</em>。你能帮我查一下 <code>a</code> 的 RHS 引用吗？我想我记得它，但只是想再次确认一下。</p>
+<p><strong>作用域</strong>：你是对的，<em>引擎</em>。同一个家伙，没变。给你。</p>
+<p><strong>引擎</strong>：酷。传递 <code>a</code> 的值，也就是 <code>2</code>，给 <code>log(..)</code>。</p>
+<p>…</p>
+</blockquote>
+<h3 id="小测验"><a href="#小测验" class="headerlink" title="小测验"></a>小测验</h3><p>检查你到目前为止的理解。确保你扮演 <em>引擎</em>，并与 <em>作用域</em> “对话”：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">	var b = a;</div><div class="line">	return a + b;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var c = foo( 2 );</div></pre></td></tr></table></figure>
+<ol>
+<li>找到所有的 LHS 查询（有3处！）。</li>
+<li>找到所有的 RHS 查询（有4处！）。</li>
+</ol>
+<p><strong>答案</strong></p>
+<ol>
+<li><p>找出所有的 LHS 查询（有3处！）。</p>
+<p><strong>c = .., a = 2（隐含的参数赋值）和 b = ..</strong></p>
+</li>
+<li><p>找出所有的 RHS 查询（有4处！）。</p>
+<p><strong>foo(2.., = a;, a + .. 和 .. + b</strong></p>
+<p>​</p>
+</li>
+</ol>
+<h2 id="嵌套的作用域"><a href="#嵌套的作用域" class="headerlink" title="嵌套的作用域"></a>嵌套的作用域</h2><p><strong>引擎</strong> 在查找一个变量，如果在直接作用域上找不到的话，<strong>引擎</strong> 就会咨询下一个外层作用域，以此类推， 直到找到这个变量或者到达最外层作用域，即全局作用域。</p>
+<p>例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">	console.log( a + b );</div><div class="line">&#125;</div><div class="line"></div><div class="line">var b = 2;</div><div class="line"></div><div class="line">foo( 2 ); // 4</div></pre></td></tr></table></figure>
+<p>该例中在查找<code>b</code>值时，要使用RHS查询。这个过程描述为一个简单的对话：</p>
+<blockquote>
+<p><strong>引擎</strong>：“嘿，<code>foo</code> 的 <em>作用域</em>，听说过 <code>b</code> 吗？我得到一个它的 RHS 引用。”</p>
+<p><strong>作用域</strong>：“没有，从没听说过。问问别人吧。”</p>
+<p><strong>引擎</strong>：“嘿，<code>foo</code> 外面的 <em>作用域</em>，哦，你是全局 <em>作用域</em>，好吧，酷。听说过 <code>b</code> 吗？我得到一个它的 RHS 引用。”</p>
+<p><strong>作用域</strong>：“是的，当然有。给你。”</p>
+</blockquote>
+<h2 id="错误（？）"><a href="#错误（？）" class="headerlink" title="错误（？）"></a>错误（？）</h2><p>为什么我们区别 LHS 和 RHS 那么重要？</p>
+<p>因为在变量还没有被声明（在所有被查询的 <em>作用域</em> 中都没找到）的情况下，这两种类型的查询的行为不同。</p>
+<p>考虑如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function foo(a) &#123;</div><div class="line">	console.log( a + b );</div><div class="line">	b = a;</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( 2 );</div></pre></td></tr></table></figure>
+<p>当 <code>b</code> 的 RHS 查询第一次发生时，它是找不到的。它被说成是一个“未声明”的变量，因为它在作用域中找不到。</p>
+<p>如果 RHS 查询在嵌套的 <em>作用域</em> 的任何地方都找不到一个值，这会导致 <em>引擎</em> 抛出一个 <code>ReferenceError</code>。必须要注意的是这个错误的类型是 <code>ReferenceError</code>。</p>
+<p><strong>相比之下，如果 <em>引擎</em> 在进行一个 LHS 查询，但到达了顶层（全局 <em>作用域</em>）都没有找到它，而且如果程序没有运行在“Strict模式”[^note-strictmode]下，那么这个全局 <em>作用域</em> 将会在 全局作用域中创建一个同名的新变量，并把它交还给 引擎。</strong>（能不能举一个具体的栗子？）</p>
+<p><em>“不，之前没有这样的东西，但是我可以帮忙给你创建一个。”</em></p>
+<p>在 ES5 中被加入的“Strict模式”[^note-strictmode]，有许多与一般/宽松/懒惰模式不同的行为。其中之一就是不允许自动/隐含的全局变量创建。在这种情况下，将不会有全局 <em>作用域</em> 的变量交回给 LHS 查询，并且类似于 RHS 的情况, <em>引擎</em> 将抛出一个 <code>ReferenceError</code>。</p>
+<p>现在，如果一个 RHS 查询的变量被找到了，但是你试着去做一些这个值不可能做到的事，比如将一个非函数的值作为函数运行，或者引用 <code>null</code> 或者 <code>undefined</code> 值的属性，那么 <em>引擎</em> 就会抛出一个不同种类的错误，称为 <code>TypeError</code>。</p>
+<p><code>ReferenceError</code> 是关于 <em>作用域</em> 解析失败的，而 <code>TypeError</code> 暗示着 <em>作用域</em> 解析成功了，但是试图对这个结果进行了一个非法/不可能的动作。</p>
+<h2 id="复习"><a href="#复习" class="headerlink" title="复习"></a>复习</h2><p>作用域是一组规则，它决定了一个变量（标识符）在哪里和如何被查找。这种查询也许是为了向这个变量赋值，这时变量是一个 LHS（左手边）引用，或者是为取得它的值，这时变量是一个 RHS（右手边）引用。</p>
+<p><strong>手动划重点：</strong>未被满足的 RHS 引用会导致 <code>ReferenceError</code> 被抛出。未被满足的 LHS 引用会导致一个自动的，隐含地创建的同名全局变量（如果不是“Strict模式”[^note-strictmode]），或者一个 <code>ReferenceError</code>（如果是“Strict模式”[^note-strictmode]）。</p>
+<h1 id="第二章-词法作用域"><a href="#第二章-词法作用域" class="headerlink" title="第二章 词法作用域"></a>第二章 词法作用域</h1>
       
     </div>
     
@@ -546,7 +614,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章：什么是作用域？"><span class="nav-number">1.</span> <span class="nav-text">第一章：什么是作用域？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译器理论"><span class="nav-number">1.1.</span> <span class="nav-text">编译器理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解作用域"><span class="nav-number">1.2.</span> <span class="nav-text">理解作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#演员"><span class="nav-number">1.2.1.</span> <span class="nav-text">演员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反复"><span class="nav-number">1.2.2.</span> <span class="nav-text">反复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译器术语"><span class="nav-number">1.2.3.</span> <span class="nav-text">编译器术语</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章：什么是作用域？"><span class="nav-number">1.</span> <span class="nav-text">第一章：什么是作用域？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#编译器理论"><span class="nav-number">1.1.</span> <span class="nav-text">编译器理论</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#理解作用域"><span class="nav-number">1.2.</span> <span class="nav-text">理解作用域</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#演员"><span class="nav-number">1.2.1.</span> <span class="nav-text">演员</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#反复"><span class="nav-number">1.2.2.</span> <span class="nav-text">反复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#编译器术语"><span class="nav-number">1.2.3.</span> <span class="nav-text">编译器术语</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#引擎-amp-作用域对话"><span class="nav-number">1.2.4.</span> <span class="nav-text">引擎 & 作用域对话</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小测验"><span class="nav-number">1.2.5.</span> <span class="nav-text">小测验</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌套的作用域"><span class="nav-number">1.3.</span> <span class="nav-text">嵌套的作用域</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#错误（？）"><span class="nav-number">1.4.</span> <span class="nav-text">错误（？）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#复习"><span class="nav-number">1.5.</span> <span class="nav-text">复习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章-词法作用域"><span class="nav-number">2.</span> <span class="nav-text">第二章 词法作用域</span></a></li></ol></div>
             
 
           </div>
@@ -584,7 +652,7 @@
 </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共9.7k字</span>
+  <span class="post-count">博客全站共11.2k字</span>
 </div>
         
 
