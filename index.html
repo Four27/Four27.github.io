@@ -368,6 +368,13 @@
 <p>是下面的简写形式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const config = &#123;</div><div class="line">  entry: &#123;</div><div class="line">    main: &apos;./path/to/my/entry/file.js&apos;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <h4 id="多个入口"><a href="#多个入口" class="headerlink" title="多个入口"></a>多个入口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">const config = &#123;</div><div class="line">  entry: &#123;</div><div class="line">    app: &apos;./src/app.js&apos;,</div><div class="line">    vendors: &apos;./src/vendors.js&apos;</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>每一个入口对应一个<code>index.html</code>。</p>
+<h3 id="（2）output（输出）"><a href="#（2）output（输出）" class="headerlink" title="（2）output（输出）"></a>（2）output（输出）</h3><p>此选项影响 compilation 对象的输出。<code>output</code> 选项控制 webpack 如何向硬盘写入编译文件。</p>
+<p>即使存在多个入口，也只能有一个出口。</p>
+<p>单个入口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  entry: &apos;./src/app.js&apos;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;bundle.js&apos;,</div><div class="line">    path: __dirname + &apos;/build&apos;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 写入到硬盘：./build/bundle.js</div></pre></td></tr></table></figure>
+<p>多个入口：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  entry: &#123;</div><div class="line">    app: &apos;./src/app.js&apos;,</div><div class="line">    search: &apos;./src/search.js&apos;</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;[name].js&apos;,</div><div class="line">    path: __dirname + &apos;/build&apos;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 写入到硬盘：./build/app.js, ./build/search.js</div></pre></td></tr></table></figure>
 
           
         
@@ -1951,7 +1958,7 @@
 </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.2k字</span>
+  <span class="post-count">博客全站共20.3k字</span>
 </div>
         
 
