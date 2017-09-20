@@ -78,7 +78,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="react," />
+  <meta name="keywords" content="webpack," />
 
 
 
@@ -95,13 +95,13 @@
 
 
 <meta name="description" content="react-webpack-temple1、建立项目目录，初始化项目123mkdir react-webpack-templecd react-webpack-templenpm init -y / npm init 当使用npm init时，会让你输入各种项目信息，你可以一路回车。也可以直接使用npm init -y一键完成默认配置，你开心就好。 这时你的文件目录里面会出现一个package.j">
-<meta name="keywords" content="react">
+<meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react-webpack-temple">
 <meta property="og:url" content="http:/four27.com/2017/09/17/react-webpack-temple/index.html">
 <meta property="og:site_name" content="Shirley&#39;s Blog">
 <meta property="og:description" content="react-webpack-temple1、建立项目目录，初始化项目123mkdir react-webpack-templecd react-webpack-templenpm init -y / npm init 当使用npm init时，会让你输入各种项目信息，你可以一路回车。也可以直接使用npm init -y一键完成默认配置，你开心就好。 这时你的文件目录里面会出现一个package.j">
-<meta property="og:updated_time" content="2017-09-19T09:15:12.283Z">
+<meta property="og:updated_time" content="2017-09-20T13:07:00.943Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-webpack-temple">
 <meta name="twitter:description" content="react-webpack-temple1、建立项目目录，初始化项目123mkdir react-webpack-templecd react-webpack-templenpm init -y / npm init 当使用npm init时，会让你输入各种项目信息，你可以一路回车。也可以直接使用npm init -y一键完成默认配置，你开心就好。 这时你的文件目录里面会出现一个package.j">
@@ -336,20 +336,22 @@
         <h1 id="react-webpack-temple"><a href="#react-webpack-temple" class="headerlink" title="react-webpack-temple"></a>react-webpack-temple</h1><h2 id="1、建立项目目录，初始化项目"><a href="#1、建立项目目录，初始化项目" class="headerlink" title="1、建立项目目录，初始化项目"></a>1、建立项目目录，初始化项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir react-webpack-temple</div><div class="line">cd react-webpack-temple</div><div class="line">npm init -y / npm init</div></pre></td></tr></table></figure>
 <p>当使用<code>npm init</code>时，会让你输入各种项目信息，你可以一路回车。也可以直接使用<code>npm init -y</code>一键完成默认配置，你开心就好。</p>
 <p>这时你的文件目录里面会出现一个<code>package.json</code>文件。</p>
-<h2 id="2、安装webpack到本地，将它作为项目依赖保存下来"><a href="#2、安装webpack到本地，将它作为项目依赖保存下来" class="headerlink" title="2、安装webpack到本地，将它作为项目依赖保存下来"></a>2、安装<code>webpack</code>到本地，将它作为项目依赖保存下来</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack --save-dev</div></pre></td></tr></table></figure>
+<h2 id="2、安装webpack到本地，将它作为项目依赖保存下来"><a href="#2、安装webpack到本地，将它作为项目依赖保存下来" class="headerlink" title="2、安装webpack到本地，将它作为项目依赖保存下来"></a>2、安装<code>webpack</code>到本地，将它作为项目依赖保存下来</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack --save-dev    // 不建议全局安装，这会将您项目中的 webpack 锁定到指定版本</div></pre></td></tr></table></figure>
 <p>这里说一下<code>--save-dev</code>和<code>--save</code>的区别：</p>
 <p>首先，运行<code>--save-dev</code>时，依赖会安装在<code>devDependencies</code>键下。运行<code>--save</code>时，依赖会安装在<code>dependencies</code>键下。</p>
 <p><code>--save</code>是对生产环境所需依赖的声明。比如：开发应用中使用的框架，库。</p>
 <p><code>--save-dev</code>对开发环境所需依赖的声明。比如：构建工具，测试工具。</p>
 <p>当使用<code>npm install</code>时，会下载<code>dependencies</code>和<code>devDependencies</code>中的模块。</p>
 <p>当使用<code>npm install --production</code>或者注明<code>NODE_ENV</code>变量值为<code>production</code>时，只会下载<code>dependencies</code>中的模块。</p>
+<p>我们可以通过运行下面命令来查看webpack的版本：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node_modules/.bin/webpack -v</div></pre></td></tr></table></figure>
 <h2 id="3、将项目目录结构设置为如下形式"><a href="#3、将项目目录结构设置为如下形式" class="headerlink" title="3、将项目目录结构设置为如下形式"></a>3、将项目目录结构设置为如下形式</h2><ul>
-<li>/src<ul>
-<li>main.js</li>
-<li>component.js</li>
+<li>/src                                                // “源”代码是用于书写和编辑的代码<ul>
+<li>index.js</li>
+<li>Component.js</li>
 </ul>
 </li>
-<li>/build<ul>
+<li>/build                                           // “构建”代码是构建过程产生的代码最小化和优化后的“输出”目录，最终将在浏览器中加载<ul>
 <li>bundle.js (自动创建)</li>
 <li>index.html</li>
 </ul>
@@ -357,8 +359,11 @@
 <li>package.json</li>
 <li>webpack.config.js</li>
 </ul>
+<p>然后再运行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./node_modules/.bin/webpack src/index.js build/bundle.js</div></pre></td></tr></table></figure>
+<p>就可以自动生成一个<code>bundle.js</code>文件。</p>
 <h2 id="4、更改webpack的配置文件"><a href="#4、更改webpack的配置文件" class="headerlink" title="4、更改webpack的配置文件"></a>4、更改<code>webpack</code>的配置文件</h2><p>webpack.config.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line"></div><div class="line"> const config = &#123;</div><div class="line">    entry: &apos;./src/main.js&apos;,   //入口文件路径</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = config;</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line"></div><div class="line"> const config = &#123;</div><div class="line">    entry: &apos;./src/index.js&apos;,   //入口文件路径</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = config;</div></pre></td></tr></table></figure>
 <h3 id="（1）entry（入口起点）"><a href="#（1）entry（入口起点）" class="headerlink" title="（1）entry（入口起点）"></a>（1）<code>entry</code>（入口起点）</h3><p>入口起点告诉 webpack从哪里开始，并遵循着依赖关系图表知道要打包什么。可以将您应用程序的入口起点认为是<strong>根上下文(contextual root)</strong>或 <strong>app 第一个启动文件</strong>。</p>
 <h4 id="单个入口"><a href="#单个入口" class="headerlink" title="单个入口"></a>单个入口</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const config = &#123;</div><div class="line">  entry: &apos;./path/to/my/entry/file.js&apos;</div><div class="line">&#125;;</div><div class="line"></div><div class="line">module.exports = config;</div></pre></td></tr></table></figure>
 <p>是下面的简写形式：</p>
@@ -370,8 +375,38 @@
 <p>单个入口：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  entry: &apos;./src/app.js&apos;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;bundle.js&apos;,</div><div class="line">    path: __dirname + &apos;/build&apos;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 写入到硬盘：./build/bundle.js</div></pre></td></tr></table></figure>
 <p>多个入口：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  entry: &#123;</div><div class="line">    app: &apos;./src/app.js&apos;,</div><div class="line">    search: &apos;./src/search.js&apos;</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;[name].js&apos;,</div><div class="line">    path: __dirname + &apos;/build&apos;</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 写入到硬盘：./build/app.js, ./build/search.js</div></pre></td></tr></table></figure>
-
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  entry: &#123;</div><div class="line">    app: &apos;./src/app.js&apos;,</div><div class="line">    search: &apos;./src/search.js&apos;</div><div class="line">  &#125;,</div><div class="line">  output: &#123;</div><div class="line">    filename: &apos;[name].js&apos;,</div><div class="line">    path: __dirname + &apos;/build&apos;   //__dirname是node.js中的一个全局变量，它指向当前执行脚本所在的目录。</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">// 写入到硬盘：./build/app.js, ./build/search.js</div></pre></td></tr></table></figure>
+<h2 id="5、在项目中安装react，react-dom"><a href="#5、在项目中安装react，react-dom" class="headerlink" title="5、在项目中安装react，react-dom"></a>5、在项目中安装react，react-dom</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install react react-dom --save</div></pre></td></tr></table></figure>
+<h2 id="6、编写第一个程序"><a href="#6、编写第一个程序" class="headerlink" title="6、编写第一个程序"></a>6、编写第一个程序</h2><p>Component.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;;</div><div class="line"></div><div class="line">class Component extends React.Component &#123;</div><div class="line"></div><div class="line">    render() &#123;</div><div class="line">        return &lt;div&gt;Hello World!&lt;/div&gt;</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">export default Component;</div></pre></td></tr></table></figure>
+<p>main.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">import React from &apos;react&apos;;</div><div class="line">import ReactDOM from &apos;react-dom&apos;;</div><div class="line">import Component from &apos;./src/Component.js&apos;;</div><div class="line"></div><div class="line">ReactDOM.render(&lt;Component /&gt;, document.getElementById(&apos;root&apos;));</div></pre></td></tr></table></figure>
+<p>index.html</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line"></div><div class="line">&lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">&lt;/head&gt;</div><div class="line"></div><div class="line">&lt;body&gt;</div><div class="line">    &lt;div id=&quot;root&quot;&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;script src=&quot;bundle.js&quot;&gt;&lt;/script&gt;</div><div class="line">&lt;/body&gt;</div><div class="line"></div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<h2 id="7、安装babel相关依赖"><a href="#7、安装babel相关依赖" class="headerlink" title="7、安装babel相关依赖"></a>7、安装<code>babel</code>相关依赖</h2><p>安装 <code>babel</code> 依赖：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install babel-loader babel-core babel-preset-react babel-preset-es2015 babel-polyfill --save-dev</div></pre></td></tr></table></figure>
+<h2 id="8、配置loader"><a href="#8、配置loader" class="headerlink" title="8、配置loader"></a>8、配置loader</h2><p>因为<code>react</code>会使用<code>es6</code>语法，因此我们需要使用<code>babel-loader</code>将<code>.jsx</code>文件和<code>es6</code>语法转换为浏览器能识别的形式。</p>
+<p>修改配置文件：</p>
+<p>webpack.config.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line"></div><div class="line">const config = &#123;</div><div class="line">    entry: &apos;./src/main.js&apos;,   //入口文件路径</div><div class="line">    output: &#123;</div><div class="line">        filename: &apos;bundle.js&apos;,</div><div class="line">        path: __dirname + &apos;/build&apos;</div><div class="line">    &#125;,</div><div class="line">    module: &#123;</div><div class="line">        rules: [</div><div class="line">            &#123;</div><div class="line">                test: /(\.jsx|\.js)$/,   // 一个用于匹配Loader所要处理文件的正则表达式</div><div class="line">                loader: &apos;babel-loader&apos;,  // loader的名称</div><div class="line">                exclude: /node_modules/, // 可忽略不处理的文件</div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">module.exports = config;</div></pre></td></tr></table></figure>
+<p>在根目录下新建一个<code>.babelrc</code>文件，用来存储使用的<code>babel</code>规则。</p>
+<p>.babelrc</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    &quot;presets&quot;: [&quot;react&quot;, &quot;latest&quot;]</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>说明：</p>
+<p><code>presets</code>字段设定转码规则，官方提供以下的规则集，你可以根据需要安装。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># ES2015转码规则</div><div class="line">$ npm install --save-dev babel-preset-es2015</div><div class="line"></div><div class="line"># react转码规则</div><div class="line">$ npm install --save-dev babel-preset-react</div><div class="line"></div><div class="line"># ES7不同阶段语法提案的转码规则（共有4个阶段），选装一个</div><div class="line">$ npm install --save-dev babel-preset-stage-0</div><div class="line">$ npm install --save-dev babel-preset-stage-1</div><div class="line">$ npm install --save-dev babel-preset-stage-2</div><div class="line">$ npm install --save-dev babel-preset-stage-3</div></pre></td></tr></table></figure>
+<p>然后，将这些规则加入<code>.babelrc</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;presets&quot;: [</div><div class="line">    &quot;es2015&quot;,</div><div class="line">    &quot;react&quot;,</div><div class="line">    &quot;stage-2&quot;</div><div class="line">  ],</div><div class="line">  &quot;plugins&quot;: []</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注意，以下所有Babel工具和模块的使用，都必须先写好<code>.babelrc</code>。</p>
+<h2 id="9、配置服务启动程序"><a href="#9、配置服务启动程序" class="headerlink" title="9、配置服务启动程序"></a>9、配置服务启动程序</h2><p>为了启动程序时更方便，尽使用<code>npm start</code>就能启动程序。我们可以利用如下配置来完成：</p>
+<p>首先安装<code>webpack-dev-server</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack-dev-server --save-dev</div></pre></td></tr></table></figure>
+<p>然后更改<code>package.json</code>文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;,</div><div class="line">  &quot;start&quot;: &quot;webpack-dev-server --open&quot;   // 使用--open运行npm start后会自动打开网页</div><div class="line">&#125;,</div></pre></td></tr></table></figure>
+<p>更改webpack.config.js文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">const config = &#123;</div><div class="line">    entry: &apos;./src/main.js&apos;,   //入口文件路径</div><div class="line">    output: &#123;</div><div class="line">        filename: &apos;bundle.js&apos;,</div><div class="line">        path: __dirname + &apos;/build&apos;</div><div class="line">    &#125;,</div><div class="line">    module: &#123;</div><div class="line">        rules: [</div><div class="line">            &#123;</div><div class="line">                test: /(\.jsx|\.js)$/,   // 一个用于匹配Loader所要处理文件的正则表达式</div><div class="line">                loader: &apos;babel-loader&apos;,  // loader的名称</div><div class="line">                exclude: /node_modules/, // 可忽略不处理的文件</div><div class="line">            &#125;</div><div class="line">        ]</div><div class="line">    &#125;,</div><div class="line">    devServer: &#123; </div><div class="line">        contentBase: &quot;./build&quot;,  // 设置webpack-dev-server提供服务器的文件夹</div><div class="line">        port: 8888,     // 服务器端口</div><div class="line">        inline: true    // 实时刷新</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这个时候就可以用<code>npm start</code>运行了。</p>
+<h2 id="10、加载css"><a href="#10、加载css" class="headerlink" title="10、加载css"></a>10、加载<code>css</code></h2>
       
     </div>
     
@@ -388,7 +423,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/react/" rel="tag"><i class="fa fa-tag"></i> react</a>
+            <a href="/tags/webpack/" rel="tag"><i class="fa fa-tag"></i> webpack</a>
           
         </div>
       
@@ -543,7 +578,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#react-webpack-temple"><span class="nav-number">1.</span> <span class="nav-text">react-webpack-temple</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、建立项目目录，初始化项目"><span class="nav-number">1.1.</span> <span class="nav-text">1、建立项目目录，初始化项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装webpack到本地，将它作为项目依赖保存下来"><span class="nav-number">1.2.</span> <span class="nav-text">2、安装webpack到本地，将它作为项目依赖保存下来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、将项目目录结构设置为如下形式"><span class="nav-number">1.3.</span> <span class="nav-text">3、将项目目录结构设置为如下形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、更改webpack的配置文件"><span class="nav-number">1.4.</span> <span class="nav-text">4、更改webpack的配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）entry（入口起点）"><span class="nav-number">1.4.1.</span> <span class="nav-text">（1）entry（入口起点）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单个入口"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">单个入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个入口"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">多个入口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（2）output（输出）"><span class="nav-number">1.4.2.</span> <span class="nav-text">（2）output（输出）</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#react-webpack-temple"><span class="nav-number">1.</span> <span class="nav-text">react-webpack-temple</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1、建立项目目录，初始化项目"><span class="nav-number">1.1.</span> <span class="nav-text">1、建立项目目录，初始化项目</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2、安装webpack到本地，将它作为项目依赖保存下来"><span class="nav-number">1.2.</span> <span class="nav-text">2、安装webpack到本地，将它作为项目依赖保存下来</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3、将项目目录结构设置为如下形式"><span class="nav-number">1.3.</span> <span class="nav-text">3、将项目目录结构设置为如下形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4、更改webpack的配置文件"><span class="nav-number">1.4.</span> <span class="nav-text">4、更改webpack的配置文件</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#（1）entry（入口起点）"><span class="nav-number">1.4.1.</span> <span class="nav-text">（1）entry（入口起点）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#单个入口"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">单个入口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多个入口"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">多个入口</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#（2）output（输出）"><span class="nav-number">1.4.2.</span> <span class="nav-text">（2）output（输出）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5、在项目中安装react，react-dom"><span class="nav-number">1.5.</span> <span class="nav-text">5、在项目中安装react，react-dom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6、编写第一个程序"><span class="nav-number">1.6.</span> <span class="nav-text">6、编写第一个程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7、安装babel相关依赖"><span class="nav-number">1.7.</span> <span class="nav-text">7、安装babel相关依赖</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8、配置loader"><span class="nav-number">1.8.</span> <span class="nav-text">8、配置loader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9、配置服务启动程序"><span class="nav-number">1.9.</span> <span class="nav-text">9、配置服务启动程序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10、加载css"><span class="nav-number">1.10.</span> <span class="nav-text">10、加载css</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -581,7 +616,7 @@
 </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共20.3k字</span>
+  <span class="post-count">博客全站共21.1k字</span>
 </div>
         
 
