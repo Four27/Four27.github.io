@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="express," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！ 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了">
+<meta name="keywords" content="express">
+<meta property="og:type" content="article">
+<meta property="og:title" content="express中的token">
+<meta property="og:url" content="http:/four27.com/2017/10/20/express中的token/index.html">
+<meta property="og:site_name" content="Shirley&#39;s Blog">
+<meta property="og:description" content="今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！ 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了">
+<meta property="og:image" content="http:/2017/10/20/express中的token/生成token.jpg">
+<meta property="og:image" content="http:/2017/10/20/express中的token/解码token.jpg">
+<meta property="og:updated_time" content="2017-10-20T07:12:22.249Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="express中的token">
+<meta name="twitter:description" content="今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！ 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了">
+<meta name="twitter:image" content="http:/2017/10/20/express中的token/生成token.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http:/four27.com/2017/10/20/express中的token/"/>
+
+
+
+
+
+  <title>express中的token | Shirley's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shirley's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http:/four27.com/2017/10/20/express中的token/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirley">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirley's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">express中的token</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-10-20T10:54:39+08:00">
+                2017-10-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！</p>
+<p>首先要知道我们为什么要使用token？</p>
+<p>我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了token和session这两种形式。</p>
+<a id="more"></a>
+<h3 id="session"><a href="#session" class="headerlink" title="session"></a>session</h3><p>用户通过<code>req.session.admin = req.admin</code>这种形式将用户的名称存入<code>session</code>中，然后系统会生成一个<code>sessionId</code>存入<code>cookie</code>中。当浏览器下一次请求时，<code>session</code>会一起传给服务器。这是就可以通过<code>req.session.admin</code>来取值了。</p>
+<p>在express下实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install express-session --save</div></pre></td></tr></table></figure>
+<p>app.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var session = require(&apos;express-session&apos;);   // 引入session所需要的包</div><div class="line"></div><div class="line">app.use(session (&#123;</div><div class="line">  secret: &apos;interesting&apos;,   // 对session id相关的cookie进行签名</div><div class="line">  resave: true,</div><div class="line">  saveUninitialized: false,    // 是否保存未初始化的会话</div><div class="line">  cookie: &#123;</div><div class="line">    maxAge: 1000 * 60 * 3,    // 设置session的有效时间，单位为毫秒</div><div class="line">  &#125;</div><div class="line">&#125;))</div><div class="line">// 当然你还可以参考express-session的文档，根据需要对session进行设置</div></pre></td></tr></table></figure>
+<p>routes/userLogin.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">req.session.userName = req.query.userName;   // 这一命令放置的具体位置即为用户登录成功后</div></pre></td></tr></table></figure>
+<h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><p>相比<code>session</code>，<code>token</code>的安全性更高。如果把<code>session</code>比作学校用的饭卡的话，那么<code>token</code>就是信用卡，每次刷饭卡的时候（好饿）是不需要输密码的，燃鹅，每次刷信用卡的时候还需要输入密码才能成功输入。这样看来是不是信用卡（呸，token）比较安全呢。<code>session</code>和<code>token</code>就是这样的。</p>
+<p>express中的<code>token</code>长这样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJpYXQiOjE1MDg0NjkxNDUsImV4cCI6MTUwODU1NTU0NX0.mjoEbk3EmKPac2_IoIu9cMPyl6KXMG9n3ts48kX1HNM</div></pre></td></tr></table></figure>
+<p>由<code>.</code>将它分成了三个部分：</p>
+<p>header（base64后的）、payload（base64后的）、signature</p>
+<p>想要了解它们的具体内容，可以自己去搜，网上很多这方面的解释。</p>
+<p>对于express中<code>token</code>的使用:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install express-jwt jsonwebtoken --save     // jsonwebtoken主要用于编码，express-jwt用于解码</div></pre></td></tr></table></figure>
+<p>app.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var expressJWT = require(&apos;express-jwt&apos;);</div><div class="line"></div><div class="line">var secretKey = &quot;interesting&quot;;   // 设置密钥,&apos;interesting&apos;可以替换成你需要的值</div><div class="line"></div><div class="line">app.use(expressJWT (&#123;</div><div class="line">  secret: secretKey    // 设置token中的密钥</div><div class="line">&#125;).unless(&#123;</div><div class="line">  path:[&apos;/userLogin&apos;]   // 除了&apos;/userLogin&apos;其他路径都要参与验证</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
+<p>routes/userLogin.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var jwt = require(&apos;jsonwebtoken&apos;);</div><div class="line"></div><div class="line">var mytoken = jwt.sign(&#123;id: userId&#125;, secretKey, &#123;expiresIn: &apos;1d&apos;&#125;);   // expiresIn为token的有效时间，1d表示一天,userId是一个																		  变量</div><div class="line">response = &#123;</div><div class="line">  status: 200,</div><div class="line">  msg: &apos;登录成功！&apos;,</div><div class="line">  userId: userId,</div><div class="line">  secret: secretKey,</div><div class="line">  token: mytoken</div><div class="line">&#125;;    // response即为返回给客户端的json值，除了token，其他值可以根据需要设定</div><div class="line"></div><div class="line">const decoded = jwt.verify(mytoken,secretKey);    // token的解码我发现了两种，这是第一种。使用这一种就不需要进行app.js文件中的设console.log(decoded);				             // 置了</div></pre></td></tr></table></figure>
+<p>routes/users.js</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">router.get(&apos;/&apos;, function(req,res) &#123;</div><div class="line">  res.send(req.user);     // 成功解码后的token放入req.user中</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 这是第二种解码方式，我觉得这种方式使用的应该要多一点</div></pre></td></tr></table></figure>
+<p>测试：</p>
+<p>我测试的时候用的postman</p>
+<img src="/2017/10/20/express中的token/生成token.jpg" alt="生成token" title="生成token">
+<img src="/2017/10/20/express中的token/解码token.jpg" alt="解码token" title="解码token">
+<h3 id="cookie和session"><a href="#cookie和session" class="headerlink" title="cookie和session"></a>cookie和session</h3><p>顺便附上这是网上的摘取的cookie和session的区别：</p>
+<p>1、session在服务器端，cookie在客户端（浏览器）；</p>
+<p>2、session<strong>默认</strong>被存在服务器的一个<strong>文件</strong>里，而不是内存；</p>
+<p>3、session的运行依赖于session id，而session id是存在cookie中的。也就是说，如果浏览器禁用cookie，那么session也会失效（但是可以通过其他方式实现，比如在url中传递session id）；</p>
+<p>4、session可以存放在文件、数据库和内存中；</p>
+<p>5、用户验证这种场合一般会用session。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/express/" rel="tag"><i class="fa fa-tag"></i> express</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/10/07/http学习笔记/" rel="next" title="http学习笔记">
+                <i class="fa fa-chevron-left"></i> http学习笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/21/react-router学习笔记/" rel="prev" title="react-router学习笔记">
+                react-router学习笔记 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Shirley" />
+          <p class="site-author-name" itemprop="name">Shirley</p>
+           
+              <p class="site-description motion-element" itemprop="description">Only when you plant the flowers can you really smell their fragrance.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">12</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#session"><span class="nav-number">1.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#token"><span class="nav-number">2.</span> <span class="nav-text">token</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie和session"><span class="nav-number">3.</span> <span class="nav-text">cookie和session</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shirley</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共25.9k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
