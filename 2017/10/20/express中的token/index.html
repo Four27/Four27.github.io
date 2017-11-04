@@ -103,7 +103,7 @@
 <meta property="og:description" content="今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！ 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了">
 <meta property="og:image" content="http:/2017/10/20/express中的token/生成token.jpg">
 <meta property="og:image" content="http:/2017/10/20/express中的token/解码token.jpg">
-<meta property="og:updated_time" content="2017-10-20T07:12:22.249Z">
+<meta property="og:updated_time" content="2017-10-31T03:44:35.633Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="express中的token">
 <meta name="twitter:description" content="今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！ 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了">
@@ -347,20 +347,20 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">var session = require(&apos;express-session&apos;);   // 引入session所需要的包</div><div class="line"></div><div class="line">app.use(session (&#123;</div><div class="line">  secret: &apos;interesting&apos;,   // 对session id相关的cookie进行签名</div><div class="line">  resave: true,</div><div class="line">  saveUninitialized: false,    // 是否保存未初始化的会话</div><div class="line">  cookie: &#123;</div><div class="line">    maxAge: 1000 * 60 * 3,    // 设置session的有效时间，单位为毫秒</div><div class="line">  &#125;</div><div class="line">&#125;))</div><div class="line">// 当然你还可以参考express-session的文档，根据需要对session进行设置</div></pre></td></tr></table></figure>
 <p>routes/userLogin.js</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">req.session.userName = req.query.userName;   // 这一命令放置的具体位置即为用户登录成功后</div></pre></td></tr></table></figure>
-<h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><p>相比<code>session</code>，<code>token</code>的安全性更高。如果把<code>session</code>比作学校用的饭卡的话，那么<code>token</code>就是信用卡，每次刷饭卡的时候（好饿）是不需要输密码的，燃鹅，每次刷信用卡的时候还需要输入密码才能成功输入。这样看来是不是信用卡（呸，token）比较安全呢。<code>session</code>和<code>token</code>就是这样的。</p>
+<h3 id="token"><a href="#token" class="headerlink" title="token"></a>token</h3><p>相比<code>session</code>，<code>token</code>的安全性更高。如果把<code>session</code>比作学校用的饭卡的话，那么<code>token</code>就是信用卡，每次刷饭卡的时候是不需要输密码的，燃鹅，每次刷信用卡的时候还需要输入密码才能成功输入。这样看来是不是信用卡（token）比较安全呢。<code>session</code>和<code>token</code>就是这样的。</p>
 <p>express中的<code>token</code>长这样：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIiLCJpYXQiOjE1MDg0NjkxNDUsImV4cCI6MTUwODU1NTU0NX0.mjoEbk3EmKPac2_IoIu9cMPyl6KXMG9n3ts48kX1HNM</div></pre></td></tr></table></figure>
 <p>由<code>.</code>将它分成了三个部分：</p>
-<p>header（base64后的）、payload（base64后的）、signature</p>
+<p>header（base64后的）、payload（base64后的）、signature（签名，即密钥）</p>
 <p>想要了解它们的具体内容，可以自己去搜，网上很多这方面的解释。</p>
 <p>对于express中<code>token</code>的使用:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install express-jwt jsonwebtoken --save     // jsonwebtoken主要用于编码，express-jwt用于解码</div></pre></td></tr></table></figure>
 <p>app.js</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var expressJWT = require(&apos;express-jwt&apos;);</div><div class="line"></div><div class="line">var secretKey = &quot;interesting&quot;;   // 设置密钥,&apos;interesting&apos;可以替换成你需要的值</div><div class="line"></div><div class="line">app.use(expressJWT (&#123;</div><div class="line">  secret: secretKey    // 设置token中的密钥</div><div class="line">&#125;).unless(&#123;</div><div class="line">  path:[&apos;/userLogin&apos;]   // 除了&apos;/userLogin&apos;其他路径都要参与验证</div><div class="line">&#125;));</div></pre></td></tr></table></figure>
 <p>routes/userLogin.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var jwt = require(&apos;jsonwebtoken&apos;);</div><div class="line"></div><div class="line">var mytoken = jwt.sign(&#123;id: userId&#125;, secretKey, &#123;expiresIn: &apos;1d&apos;&#125;);   // expiresIn为token的有效时间，1d表示一天,userId是一个																		  变量</div><div class="line">response = &#123;</div><div class="line">  status: 200,</div><div class="line">  msg: &apos;登录成功！&apos;,</div><div class="line">  userId: userId,</div><div class="line">  secret: secretKey,</div><div class="line">  token: mytoken</div><div class="line">&#125;;    // response即为返回给客户端的json值，除了token，其他值可以根据需要设定</div><div class="line"></div><div class="line">const decoded = jwt.verify(mytoken,secretKey);    // token的解码我发现了两种，这是第一种。使用这一种就不需要进行app.js文件中的设console.log(decoded);				             // 置了</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var jwt = require(&apos;jsonwebtoken&apos;);</div><div class="line"></div><div class="line">var mytoken = jwt.sign(&#123;id: userId&#125;, secretKey, &#123;expiresIn: &apos;1d&apos;&#125;);   // expiresIn为token的有效时间，1d表示一天,userId是一个																		  变量</div><div class="line">response = &#123;</div><div class="line">  status: 200,</div><div class="line">  msg: &apos;登录成功！&apos;,</div><div class="line">  userId: userId,</div><div class="line">  secret: secretKey,</div><div class="line">  token: mytoken</div><div class="line">&#125;;    // response即为返回给客户端的json值，除了token，其他值可以根据需要设定</div><div class="line"></div><div class="line">const decoded = jwt.verify(mytoken,secretKey);    // token的解码我发现了两种，这是第一种。使用这一											种就不需要进行app.js文件中的设置console.log(decoded)了;</div></pre></td></tr></table></figure>
 <p>routes/users.js</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">router.get(&apos;/&apos;, function(req,res) &#123;</div><div class="line">  res.send(req.user);     // 成功解码后的token放入req.user中</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 这是第二种解码方式，我觉得这种方式使用的应该要多一点</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">router.get(&apos;/&apos;, function(req,res) &#123;</div><div class="line">  res.send(req.user);     // 成功解码后的token放入req.user中</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// 这是第二种解码方式，我觉得这种方式使用的应该要多一点。token会在每一次网页请求时放在头部中一起发送给服务器，然后服务器通过express-jwt解码，将解码成功的token放入req.user中</div></pre></td></tr></table></figure>
 <p>测试：</p>
 <p>我测试的时候用的postman</p>
 <img src="/2017/10/20/express中的token/生成token.jpg" alt="生成token" title="生成token">
@@ -490,7 +490,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">17</span>
+                <span class="site-state-item-count">19</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -512,7 +512,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">13</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -585,7 +585,7 @@
 </div>
 <div class="theme-info">
   <div class="powered-by"></div>
-  <span class="post-count">博客全站共26.2k字</span>
+  <span class="post-count">博客全站共30.8k字</span>
 </div>
         
 
