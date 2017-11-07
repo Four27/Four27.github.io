@@ -94,19 +94,19 @@
 
 
 
-<meta name="description" content="今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！ 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了">
+<meta name="description" content="这里主要总结express中的token相关问题。 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了token和session这两种形式。">
 <meta name="keywords" content="express">
 <meta property="og:type" content="article">
 <meta property="og:title" content="express中的token">
 <meta property="og:url" content="http:/four27.com/2017/10/20/express中的token/index.html">
 <meta property="og:site_name" content="Shirley&#39;s Blog">
-<meta property="og:description" content="今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！ 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了">
+<meta property="og:description" content="这里主要总结express中的token相关问题。 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了token和session这两种形式。">
 <meta property="og:image" content="http:/2017/10/20/express中的token/生成token.jpg">
 <meta property="og:image" content="http:/2017/10/20/express中的token/解码token.jpg">
-<meta property="og:updated_time" content="2017-10-31T03:44:35.633Z">
+<meta property="og:updated_time" content="2017-11-07T08:53:45.573Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="express中的token">
-<meta name="twitter:description" content="今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！ 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了">
+<meta name="twitter:description" content="这里主要总结express中的token相关问题。 首先要知道我们为什么要使用token？ 我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了token和session这两种形式。">
 <meta name="twitter:image" content="http:/2017/10/20/express中的token/生成token.jpg">
 
 
@@ -336,7 +336,7 @@
       
 
       
-        <p>今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！</p>
+        <p>这里主要总结express中的token相关问题。</p>
 <p>首先要知道我们为什么要使用token？</p>
 <p>我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了token和session这两种形式。</p>
 <a id="more"></a>

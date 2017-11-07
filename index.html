@@ -455,19 +455,15 @@
 
       
         
-          
-            <p>本文主要介绍用redux怎么实现一个TodoList。</p>
+          <p>本文主要介绍用redux怎么实现一个TodoList。</p>
 <h1 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h1><h2 id="action"><a href="#action" class="headerlink" title="action"></a>action</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">const addTodo = (text) =&gt; &#123;</div><div class="line">  return &#123;</div><div class="line">    type: &apos;ADD_TODO&apos;,</div><div class="line">    id: nextTodoId++,</div><div class="line">    text</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>如上所示我们可以知道，action其实是一个行为的抽象，它定义了这个行为的类型、id（这里的id是一个全局变量，为了区别每一条todolist）和要添加的这条待办项的具体内容。<strong>每一个action必须要有一个type。</strong></p>
-<p>store可以直接通过<code>store.dispatch()</code>来调用<code>dispatch()</code>方法：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">store.dispatch(addTodo(text))</div></pre></td></tr></table></figure>
-<p>大多数情况会使用<code>react-redux</code>下的<code>connect()</code>。</p>
-<h2 id="reducer"><a href="#reducer" class="headerlink" title="reducer"></a>reducer</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">const todo = (state, action) =&gt; &#123;</div><div class="line">  switch(action.type) &#123;</div><div class="line">    case &quot;ADD_TODO&quot;:</div><div class="line">    	return &#123;</div><div class="line">          id: action.id,</div><div class="line">          text: action.text,     // 内容即为action的内容</div><div class="line">          completed: false</div><div class="line">    	&#125;</div><div class="line">    case &quot;TOGGLE_TODO&quot;:      // 点击待办项来改变他的状态</div><div class="line">    	if (state.id !== action.id) &#123;</div><div class="line">          return false</div><div class="line">    	&#125;</div><div class="line">    	return Object.assign(&#123;&#125;, state, &#123;   // Object.assign为es6中方法</div><div class="line">          completed: !state.completed</div><div class="line">    	&#125;)</div><div class="line">  &#125;</div><div class="line">  default:</div><div class="line">  	return state</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>reducer是对每一个action响应的抽象，来决定这个action到底怎么来响应。</p>
-<p>reducer必须是纯方法，所谓纯方法是指，相同的输入都有相同的输出，不存在random这种随机函数。</p>
-<h2 id="store"><a href="#store" class="headerlink" title="store"></a>store</h2><p>所有的reducer是放在store中的，action是作用于store上的，reducer再根据store来做响应。store = state + reducer，即为所有状态的存储。它是唯一的。调用redux中的creactstore，然后把reducer传进去就得到了store。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/03/redux学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -585,6 +581,8 @@
       
         
           <p>本文主要目的是介绍一下ant-design的基本配置，你也可以直接去官网根据自己的需要配置。本文的配置是基于一个<code>react-hot-webpack-boilerplate</code>，想了解详细信息，可以在我的github上查看。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install antd --save</div></pre></td></tr></table></figure>
+<p>Ant.jsx</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/10/25/ant-design环境配置/#more" rel="contents">
@@ -834,7 +832,7 @@
 
       
         
-          <p>今天真的是超级开心，解决了token的验证问题，这一路上查了很多资料，收获蛮大的~这里小小的总结一下！</p>
+          <p>这里主要总结express中的token相关问题。</p>
 <p>首先要知道我们为什么要使用token？</p>
 <p>我的理解是，当用户完成登录之后会访问其他的页面，在这个过程中就会涉及到用户访问的权限，比如能不能发表文章能不能修改资料之类的。如果不用token和session之类的工具，就意味着每次权限验证我们就需要用用户的密码来验证。所以为了保存用户的登录状态就提出了token和session这两种形式。</p>
           <!--noindex-->
@@ -960,111 +958,16 @@
 
       
         
-          
-            <p>HTTP：超文本传输协议，无状态。</p>
+          <p>HTTP：超文本传输协议，无状态。</p>
 <h2 id="URL-amp-URN-amp-URI"><a href="#URL-amp-URN-amp-URI" class="headerlink" title="URL&amp;URN&amp;URI"></a>URL&amp;URN&amp;URI</h2><p><strong>URL</strong>（统一资源定位符）是URI（统一资源标识符）最常见的一种形式，也被称为 <strong>web地址</strong>。常见组成形式：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">https://developer.mozilla.org</div><div class="line">https://developer.mozilla.org/en-US/docs/Learn/</div><div class="line">https://developer.mozilla.org/en-US/search?q=URL</div><div class="line"></div><div class="line">http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument</div></pre></td></tr></table></figure>
-<p><strong>URN</strong>是另一种形式的URI，它通过特定命名空间中的唯一名称来标识资源。常见组成形式：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">urn:isbn:9780141036144     // 乔治·奥威尔所著的《1984》 </div><div class="line">urn:ietf:rfc:7230          // IETF规范7230，超文本传输协议 (HTTP/1.1)：Message Syntax and Routing.</div></pre></td></tr></table></figure>
-<p><strong>URI</strong>语法</p>
-<blockquote>
-<p><a href="http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument中" target="_blank" rel="external">http://www.example.com:80/path/to/myfile.html?key1=value1&amp;key2=value2#SomewhereInTheDocument中</a></p>
-</blockquote>
-<p><code>http://</code>：协议类型，其他协议类型如下：</p>
-<table>
-<thead>
-<tr>
-<th>方案</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>data</td>
-<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/data_URIs" target="_blank" rel="external">Data URIs</a></td>
-</tr>
-<tr>
-<td>file</td>
-<td>指定主机上文件的名称</td>
-</tr>
-<tr>
-<td>ftp</td>
-<td><a href="https://developer.mozilla.org/en-US/docs/Glossary/FTP" target="_blank" rel="external">文件传输协议</a></td>
-</tr>
-<tr>
-<td>http/https</td>
-<td><a href="https://developer.mozilla.org/en-US/docs/Glossary/HTTP" target="_blank" rel="external">超文本传输协议／安全的超文本传输协议</a></td>
-</tr>
-<tr>
-<td>mailto</td>
-<td>电子邮件地址</td>
-</tr>
-<tr>
-<td>ssh</td>
-<td>安全 shell</td>
-</tr>
-<tr>
-<td>tel</td>
-<td>电话</td>
-</tr>
-<tr>
-<td>urn</td>
-<td>统一资源名称</td>
-</tr>
-<tr>
-<td>view-source</td>
-<td>资源的源代码</td>
-</tr>
-<tr>
-<td>ws/wss</td>
-<td>（加密的） <a href="https://developer.mozilla.org/zh-CN/docs/WebSockets" target="_blank" rel="external">WebSocket</a> 连接</td>
-</tr>
-</tbody>
-</table>
-<p><code>www.example.com</code>： 域名或IP地址</p>
-<p><code>:80</code>：端口号</p>
-<p><code>/path/to/myfile.html</code>：web服务器上资源路径</p>
-<p><code>?key1=value1&amp;key2=value2</code>：提供给web服务器的额外参数，为一组用&amp;符号隔开的键值对</p>
-<p><code>#SomewhereInTheDocument</code> ：是资源本身的某一部分的一个锚点</p>
-<h2 id="HTTP常见状态码"><a href="#HTTP常见状态码" class="headerlink" title="HTTP常见状态码"></a>HTTP常见状态码</h2><ul>
-<li>200 - 请求成功</li>
-<li>301 - 资源（网页等）被永久转移到其它URL</li>
-<li>404 - 请求的资源（网页等）不存在</li>
-<li>500 - 内部服务器错误</li>
-</ul>
-<p>HTTP状态码分类（第一个数字定义状态码类型）：</p>
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>分类描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>1**</td>
-<td>信息，服务器收到请求，需要请求者继续执行操作</td>
-</tr>
-<tr>
-<td>2**</td>
-<td>成功，操作被成功接收并处理</td>
-</tr>
-<tr>
-<td>3**</td>
-<td>重定向，需要进一步的操作以完成请求</td>
-</tr>
-<tr>
-<td>4**</td>
-<td>客户端错误，请求包含语法错误或无法完成请求</td>
-</tr>
-<tr>
-<td>5**</td>
-<td>服务器错误，服务器在处理请求的过程中发生了错误</td>
-</tr>
-</tbody>
-</table>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/10/07/http学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1308,16 +1211,6 @@
         
           <h1 id="react-webpack-temple"><a href="#react-webpack-temple" class="headerlink" title="react-webpack-temple"></a>react-webpack-temple</h1><h2 id="1、建立项目目录，初始化项目"><a href="#1、建立项目目录，初始化项目" class="headerlink" title="1、建立项目目录，初始化项目"></a>1、建立项目目录，初始化项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir react-webpack-temple</div><div class="line">cd react-webpack-temple</div><div class="line">npm init -y / npm init</div></pre></td></tr></table></figure>
 <p>当使用<code>npm init</code>时，会让你输入各种项目信息，你可以一路回车。也可以直接使用<code>npm init -y</code>一键完成默认配置，你开心就好。</p>
-<p>这时你的文件目录里面会出现一个<code>package.json</code>文件。</p>
-<h2 id="2、安装webpack到本地，将它作为项目依赖保存下来"><a href="#2、安装webpack到本地，将它作为项目依赖保存下来" class="headerlink" title="2、安装webpack到本地，将它作为项目依赖保存下来"></a>2、安装<code>webpack</code>到本地，将它作为项目依赖保存下来</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack --save-dev    // 不建议全局安装，这会将您项目中的 webpack 锁定到指定版本</div></pre></td></tr></table></figure>
-<p>这里说一下<code>--save-dev</code>和<code>--save</code>的区别：</p>
-<p>首先，运行<code>--save-dev</code>时，依赖会安装在<code>devDependencies</code>键下。运行<code>--save</code>时，依赖会安装在<code>dependencies</code>键下。</p>
-<p><code>--save</code>是对生产环境所需依赖的声明。比如：开发应用中使用的框架，库。</p>
-<p><code>--save-dev</code>对开发环境所需依赖的声明。比如：构建工具，测试工具。</p>
-<p>当使用<code>npm install</code>时，会下载<code>dependencies</code>和<code>devDependencies</code>中的模块。</p>
-<p>当使用<code>npm install --production</code>或者注明<code>NODE_ENV</code>变量值为<code>production</code>时，只会下载<code>dependencies</code>中的模块。</p>
-<p>我们可以通过运行下面命令来查看webpack的版本：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node_modules/.bin/webpack -v</div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/17/react-hot-webpack-boilerplate/#more" rel="contents">
@@ -1466,7 +1359,7 @@
           <h1 id="第一章：this是什么？"><a href="#第一章：this是什么？" class="headerlink" title="第一章：this是什么？"></a>第一章：<code>this</code>是什么？</h1><p>在学习使用<code>this</code>之前我们首先要清楚两点：</p>
 <p>1.<code>this</code>既不是函数自身的引用，也不是函数<em>词法作用域</em>的引用。</p>
 <p>2.<code>this</code>其实是在函数调用时才建立的一个绑定，它的指向与函数声明的位置无关，而与函数调用的位置有关。</p>
-<h2 id="为什么要用this"><a href="#为什么要用this" class="headerlink" title="为什么要用this"></a>为什么要用<code>this</code></h2><p>总结：用<code>this</code>可以简化代码，不用利用频繁传参的方式来实现调用。</p>
+<h2 id="为什么要用this"><a href="#为什么要用this" class="headerlink" title="为什么要用this"></a>为什么要用<code>this</code></h2>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/09/12/You don't know js ( this & object prototypes ) 学习笔记/#more" rel="contents">
@@ -1616,11 +1509,7 @@
 <p>传统编译型语言处理，一块代码执行之前的处理分为三个步骤，成为“编译”：</p>
 <ul>
 <li>词法分析</li>
-<li>语法分析</li>
-<li>代码生成</li>
 </ul>
-<p>和大多数其他语言的编译器一样，JavaScript 引擎要比这区区三步复杂太多了。</p>
-<p>其一，javaScript 引擎没有（像其他语言的编译器那样）大把的时间去优化，因为 javaScript 的编译和其他语言不同，不是提前发生在一个构建的步骤中。对 javaScript 来说，在许多情况下，编译发生在代码被执行前的仅仅几微秒之内（或更少！）。为了确保最快的性能，JS 引擎将使用所有的招数（比如 JIT，它可以懒编译甚至是热编译，等等），而这远超出了我们关于“作用域”的讨论。</p>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2017/08/28/You don't know js ( scope & closures ) 学习笔记/#more" rel="contents">

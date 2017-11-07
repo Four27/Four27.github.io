@@ -94,17 +94,17 @@
 
 
 
-<meta name="description" content="react-webpack-temple1、建立项目目录，初始化项目123mkdir react-webpack-templecd react-webpack-templenpm init -y / npm init 当使用npm init时，会让你输入各种项目信息，你可以一路回车。也可以直接使用npm init -y一键完成默认配置，你开心就好。 这时你的文件目录里面会出现一个package.j">
+<meta name="description" content="react-webpack-temple1、建立项目目录，初始化项目123mkdir react-webpack-templecd react-webpack-templenpm init -y / npm init 当使用npm init时，会让你输入各种项目信息，你可以一路回车。也可以直接使用npm init -y一键完成默认配置，你开心就好。">
 <meta name="keywords" content="webpack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="react-webpack-temple">
 <meta property="og:url" content="http:/four27.com/2017/09/17/react-hot-webpack-boilerplate/index.html">
 <meta property="og:site_name" content="Shirley&#39;s Blog">
-<meta property="og:description" content="react-webpack-temple1、建立项目目录，初始化项目123mkdir react-webpack-templecd react-webpack-templenpm init -y / npm init 当使用npm init时，会让你输入各种项目信息，你可以一路回车。也可以直接使用npm init -y一键完成默认配置，你开心就好。 这时你的文件目录里面会出现一个package.j">
-<meta property="og:updated_time" content="2017-09-25T03:54:15.459Z">
+<meta property="og:description" content="react-webpack-temple1、建立项目目录，初始化项目123mkdir react-webpack-templecd react-webpack-templenpm init -y / npm init 当使用npm init时，会让你输入各种项目信息，你可以一路回车。也可以直接使用npm init -y一键完成默认配置，你开心就好。">
+<meta property="og:updated_time" content="2017-11-07T08:55:31.386Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-webpack-temple">
-<meta name="twitter:description" content="react-webpack-temple1、建立项目目录，初始化项目123mkdir react-webpack-templecd react-webpack-templenpm init -y / npm init 当使用npm init时，会让你输入各种项目信息，你可以一路回车。也可以直接使用npm init -y一键完成默认配置，你开心就好。 这时你的文件目录里面会出现一个package.j">
+<meta name="twitter:description" content="react-webpack-temple1、建立项目目录，初始化项目123mkdir react-webpack-templecd react-webpack-templenpm init -y / npm init 当使用npm init时，会让你输入各种项目信息，你可以一路回车。也可以直接使用npm init -y一键完成默认配置，你开心就好。">
 
 
 
@@ -335,6 +335,7 @@
       
         <h1 id="react-webpack-temple"><a href="#react-webpack-temple" class="headerlink" title="react-webpack-temple"></a>react-webpack-temple</h1><h2 id="1、建立项目目录，初始化项目"><a href="#1、建立项目目录，初始化项目" class="headerlink" title="1、建立项目目录，初始化项目"></a>1、建立项目目录，初始化项目</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">mkdir react-webpack-temple</div><div class="line">cd react-webpack-temple</div><div class="line">npm init -y / npm init</div></pre></td></tr></table></figure>
 <p>当使用<code>npm init</code>时，会让你输入各种项目信息，你可以一路回车。也可以直接使用<code>npm init -y</code>一键完成默认配置，你开心就好。</p>
+<a id="more"></a>
 <p>这时你的文件目录里面会出现一个<code>package.json</code>文件。</p>
 <h2 id="2、安装webpack到本地，将它作为项目依赖保存下来"><a href="#2、安装webpack到本地，将它作为项目依赖保存下来" class="headerlink" title="2、安装webpack到本地，将它作为项目依赖保存下来"></a>2、安装<code>webpack</code>到本地，将它作为项目依赖保存下来</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack --save-dev    // 不建议全局安装，这会将您项目中的 webpack 锁定到指定版本</div></pre></td></tr></table></figure>
 <p>这里说一下<code>--save-dev</code>和<code>--save</code>的区别：</p>
@@ -345,7 +346,7 @@
 <p>当使用<code>npm install --production</code>或者注明<code>NODE_ENV</code>变量值为<code>production</code>时，只会下载<code>dependencies</code>中的模块。</p>
 <p>我们可以通过运行下面命令来查看webpack的版本：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">node_modules/.bin/webpack -v</div></pre></td></tr></table></figure>
-<a id="more"></a>
+<!-- more -->
 <h2 id="3、将项目目录结构设置为如下形式"><a href="#3、将项目目录结构设置为如下形式" class="headerlink" title="3、将项目目录结构设置为如下形式"></a>3、将项目目录结构设置为如下形式</h2><ul>
 <li>/src                                                // “源”代码是用于书写和编辑的代码<ul>
 <li>index.js</li>
