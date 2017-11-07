@@ -358,35 +358,15 @@
 
       
         
-          
-            <p>首先，用一张图来总结这三者的关系：</p>
+          <p>首先，用一张图来总结这三者的关系：</p>
 <img src="/2017/11/07/关于prototype、-proto-、constructor/about_proto.jpg" alt="about_proto.jpg" title="">
-<h2 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a><code>__proto__</code></h2><p>js中每一个对象都含有一个内置属性<code>_proto_</code>。</p>
-<p>它的作用在于：当我们在访问一个对象<code>obj</code>中的某一属性时，如果在<code>obj</code>中找不到这一属性，就会沿着<code>_proto_</code>一直寻找，直到<code>_proto_</code>值为<code>null</code>。这样就构成了原型链。</p>
-<p>对于<code>_proto_</code>的指向，我们可以根据对象定义方式的不同分为三种情况来讨论：</p>
-<p>（1）使用字面量创建的对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = new String(&apos;123&apos;);</div><div class="line">a.__proto__ === String.prototype;  // true</div><div class="line"></div><div class="line">var obj = &#123;&#125;;</div><div class="line">obj.__proto__=== Object.prototype;  // true</div></pre></td></tr></table></figure>
-<p>对于使用字面量来创建的对象，它的<code>_proto_</code>直接指向这一字面量的<code>prototype</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = new String(&apos;123&apos;);</div><div class="line">String.prototype.__proto__ === Object.prototype;</div></pre></td></tr></table></figure>
-<p>补充说明<code>String.prototype</code>（即字面量原型）的<code>__proto__</code>的指向，因为<code>String.prototype</code>也是一个对象，所以它的<code>__proto__</code>指向的是<code>Object.prototype</code>。</p>
-<p>（2）使用<code>new</code>方式创建对象</p>
-<p>第一种情况：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function Foo() &#123;</div><div class="line">	console.log(&apos;hello&apos;);</div><div class="line">&#125;</div><div class="line"></div><div class="line">var a = new Foo();</div><div class="line">a.__proto__ === Foo.prototype;   // true</div></pre></td></tr></table></figure>
-<p>第二种情况：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"> function Bar()&#123;&#125;</div><div class="line">//这时我们想让Foo继承Bar</div><div class="line">Foo.prototype = new Bar()</div><div class="line"> Foo.prototype.__proto__ === Bar.prototype //true</div></pre></td></tr></table></figure>
-<p>（3） 使用<code>Object.create(...)</code>方式创建对象</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function Obj() &#123;</div><div class="line">	console.log(&apos;hello&apos;);</div><div class="line">&#125;</div><div class="line">var bar = Object.create(Obj);</div><div class="line">bar.__proto__ === Obj;    // true</div></pre></td></tr></table></figure>
-<p>对于上面的结果你可以这么理解，让我们看看一个<code>Object.create(Obj)</code>是怎么工作的：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">Object.create = function(p) &#123;</div><div class="line">    function f()&#123;&#125;</div><div class="line">    f.prototype = p;</div><div class="line">    return new f();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>所以<code>bar</code>指向的是函数<code>Obj</code>本身。</p>
-<p>对于<code>__proto__</code>这一方法在ES5中才被标准化为传统功能，为了更好的保证web浏览器的兼容性，建议只使用<code>Object.getPrototypeOf()</code>。</p>
-<h2 id="prototype"><a href="#prototype" class="headerlink" title="prototype"></a>prototype</h2><p>除了<code>Function.prototype.bind</code>方法构造出来的函数，其他函数都有一个<code>prototype</code>属性。这个属性指向函数的原型对象。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function a() &#123;</div><div class="line">  console.log(&apos;hello&apos;);</div><div class="line">&#125;</div><div class="line">a.prototype;  // constructor: f a()</div><div class="line">			 //  __proto__: Object</div><div class="line">			 // ...</div></pre></td></tr></table></figure>
-<h2 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h2><p>存在于原型对象上，此属性的值是对函数本身的引用，而不止是一个字符串。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">function a() &#123;</div><div class="line">	console.log(&apos;1&apos;);</div><div class="line">&#125;</div><div class="line">a.prototype.constructor;   // ƒ a() &#123;</div><div class="line">	 					  //      console.log(&apos;1&apos;);</div><div class="line">						  //	&#125;</div><div class="line"></div><div class="line">a.prototype.constructor();   // 1</div></pre></td></tr></table></figure>
-<h2 id="proto-和prototype的区别"><a href="#proto-和prototype的区别" class="headerlink" title="__proto__和prototype的区别"></a><code>__proto__</code>和<code>prototype</code>的区别</h2><p>1.对象有属性<code>__proto__</code>,指向该对象的构造函数的原型对象。<br>2.方法除了有属性<code>__proto__</code>,还有属性<code>prototype</code>，<code>prototype</code>指向该方法的原型对象。</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/11/07/关于prototype、-proto-、constructor/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>

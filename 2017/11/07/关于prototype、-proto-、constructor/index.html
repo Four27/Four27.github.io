@@ -94,18 +94,18 @@
 
 
 
-<meta name="description" content="首先，用一张图来总结这三者的关系：  __proto__js中每一个对象都含有一个内置属性_proto_。 它的作用在于：当我们在访问一个对象obj中的某一属性时，如果在obj中找不到这一属性，就会沿着_proto_一直寻找，直到_proto_值为null。这样就构成了原型链。 对于_proto_的指向，我们可以根据对象定义方式的不同分为三种情况来讨论： （1）使用字面量创建的对象 12345va">
+<meta name="description" content="首先，用一张图来总结这三者的关系：">
 <meta name="keywords" content="javaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="关于prototype、_proto_、constructor">
 <meta property="og:url" content="http:/four27.com/2017/11/07/关于prototype、-proto-、constructor/index.html">
 <meta property="og:site_name" content="Shirley&#39;s Blog">
-<meta property="og:description" content="首先，用一张图来总结这三者的关系：  __proto__js中每一个对象都含有一个内置属性_proto_。 它的作用在于：当我们在访问一个对象obj中的某一属性时，如果在obj中找不到这一属性，就会沿着_proto_一直寻找，直到_proto_值为null。这样就构成了原型链。 对于_proto_的指向，我们可以根据对象定义方式的不同分为三种情况来讨论： （1）使用字面量创建的对象 12345va">
+<meta property="og:description" content="首先，用一张图来总结这三者的关系：">
 <meta property="og:image" content="http:/2017/11/07/关于prototype、-proto-、constructor/about_proto.jpg">
-<meta property="og:updated_time" content="2017-11-07T13:21:29.600Z">
+<meta property="og:updated_time" content="2017-11-07T13:24:12.713Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="关于prototype、_proto_、constructor">
-<meta name="twitter:description" content="首先，用一张图来总结这三者的关系：  __proto__js中每一个对象都含有一个内置属性_proto_。 它的作用在于：当我们在访问一个对象obj中的某一属性时，如果在obj中找不到这一属性，就会沿着_proto_一直寻找，直到_proto_值为null。这样就构成了原型链。 对于_proto_的指向，我们可以根据对象定义方式的不同分为三种情况来讨论： （1）使用字面量创建的对象 12345va">
+<meta name="twitter:description" content="首先，用一张图来总结这三者的关系：">
 <meta name="twitter:image" content="http:/2017/11/07/关于prototype、-proto-、constructor/about_proto.jpg">
 
 
@@ -359,6 +359,7 @@
       
         <p>首先，用一张图来总结这三者的关系：</p>
 <img src="/2017/11/07/关于prototype、-proto-、constructor/about_proto.jpg" alt="about_proto.jpg" title="">
+<a id="more"></a>
 <h2 id="proto"><a href="#proto" class="headerlink" title="__proto__"></a><code>__proto__</code></h2><p>js中每一个对象都含有一个内置属性<code>_proto_</code>。</p>
 <p>它的作用在于：当我们在访问一个对象<code>obj</code>中的某一属性时，如果在<code>obj</code>中找不到这一属性，就会沿着<code>_proto_</code>一直寻找，直到<code>_proto_</code>值为<code>null</code>。这样就构成了原型链。</p>
 <p>对于<code>_proto_</code>的指向，我们可以根据对象定义方式的不同分为三种情况来讨论：</p>
