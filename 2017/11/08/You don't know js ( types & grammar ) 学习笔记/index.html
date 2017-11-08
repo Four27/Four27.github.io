@@ -1,0 +1,833 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="javaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="你不懂JS：类型与文法第一章：类型类型的重要意义内建类型JavaScript定义了七种内建类型：  null undefined boolean number string object symbol       ——ES6中引入  注意：除了object所有这些类型都被成为“基本类型”。 利用typeof可以检测给定值的类型: 1234567891011typeof undefined">
+<meta name="keywords" content="javaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="You don&#39;t know js ( types &amp; grammar ) 学习笔记">
+<meta property="og:url" content="http:/four27.com/2017/11/08/You don't know js ( types & grammar ) 学习笔记/index.html">
+<meta property="og:site_name" content="Shirley&#39;s Blog">
+<meta property="og:description" content="你不懂JS：类型与文法第一章：类型类型的重要意义内建类型JavaScript定义了七种内建类型：  null undefined boolean number string object symbol       ——ES6中引入  注意：除了object所有这些类型都被成为“基本类型”。 利用typeof可以检测给定值的类型: 1234567891011typeof undefined">
+<meta property="og:updated_time" content="2017-11-08T14:36:58.229Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="You don&#39;t know js ( types &amp; grammar ) 学习笔记">
+<meta name="twitter:description" content="你不懂JS：类型与文法第一章：类型类型的重要意义内建类型JavaScript定义了七种内建类型：  null undefined boolean number string object symbol       ——ES6中引入  注意：除了object所有这些类型都被成为“基本类型”。 利用typeof可以检测给定值的类型: 1234567891011typeof undefined">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http:/four27.com/2017/11/08/You don't know js ( types & grammar ) 学习笔记/"/>
+
+
+
+
+
+  <title>You don't know js ( types & grammar ) 学习笔记 | Shirley's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shirley's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http:/four27.com/2017/11/08/You don't know js ( types & grammar ) 学习笔记/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirley">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirley's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">You don't know js ( types & grammar ) 学习笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-08T12:47:22+08:00">
+                2017-11-08
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/javaScript学习笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">javaScript学习笔记</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="你不懂JS：类型与文法"><a href="#你不懂JS：类型与文法" class="headerlink" title="你不懂JS：类型与文法"></a>你不懂JS：类型与文法</h1><h1 id="第一章：类型"><a href="#第一章：类型" class="headerlink" title="第一章：类型"></a>第一章：类型</h1><h2 id="类型的重要意义"><a href="#类型的重要意义" class="headerlink" title="类型的重要意义"></a>类型的重要意义</h2><h3 id="内建类型"><a href="#内建类型" class="headerlink" title="内建类型"></a>内建类型</h3><p>JavaScript定义了七种内建类型：</p>
+<ul>
+<li><code>null</code></li>
+<li><code>undefined</code></li>
+<li><code>boolean</code></li>
+<li><code>number</code></li>
+<li><code>string</code></li>
+<li><code>object</code></li>
+<li><code>symbol</code>       ——ES6中引入</li>
+</ul>
+<p>注意：除了<code>object</code>所有这些类型都被成为“基本类型”。</p>
+<p>利用<code>typeof</code>可以检测给定值的类型:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">typeof undefined     === &quot;undefined&quot;; // true</div><div class="line">typeof true          === &quot;boolean&quot;;   // true</div><div class="line">typeof 42            === &quot;number&quot;;    // true</div><div class="line">typeof &quot;42&quot;          === &quot;string&quot;;    // true</div><div class="line">typeof &#123; life: 42 &#125;  === &quot;object&quot;;    // true</div><div class="line">typeof Symbol()      === &quot;symbol&quot;;    // true</div><div class="line"></div><div class="line">特殊：</div><div class="line">typeof null === &apos;object&apos;;    // true 这是近20年一直存在的一个bug</div><div class="line">typeof function hello() &#123;&#125; === &apos;function&apos;;  // true</div><div class="line">typeof [1, 2, 3] === &apos;object&apos;;    // true</div></pre></td></tr></table></figure>
+<p>对于<code>function</code>，它实际上是<code>object</code>的子类型。特别地，一个函数被称为“可调用对象”。数组返回<code>object</code>也可认为是对象的子类型。</p>
+<p>函数还拥有一个属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">function a(b,c) &#123;</div><div class="line">	/* .. */</div><div class="line">&#125;</div><div class="line"></div><div class="line">a.length;  // 2  它被设置为函数声明时形参的数量</div></pre></td></tr></table></figure>
+<p>同样的数组也拥有这样一个属性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [1, 2, 3];</div><div class="line"></div><div class="line">a.length;    // 3</div></pre></td></tr></table></figure>
+<h3 id="值作为类型"><a href="#值作为类型" class="headerlink" title="值作为类型"></a>值作为类型</h3><p>我们要明白：在js中变量是没有类型的，<strong>值才有类型</strong>。</p>
+<p>对一个变量使用<code>typeof</code>，它询问的是这个<strong>变量里的值</strong>是什么类型。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = 42;</div><div class="line">typeof a; // &quot;number&quot;</div><div class="line"></div><div class="line">a = true;</div><div class="line">typeof a; // &quot;boolean&quot;</div></pre></td></tr></table></figure>
+<p><code>typeof</code>操作符总是返回字符串：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">typeof typeof 42; // &quot;string&quot;   因为typeof 42 返回&quot;number&quot;</div></pre></td></tr></table></figure>
+<h4 id="undefined-vs-undeclared"><a href="#undefined-vs-undeclared" class="headerlink" title="undefined vs. undeclared"></a><code>undefined</code> vs. <code>undeclared</code></h4><p>还不拥有值的变量，实际上拥有<code>undefined</code>值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">var a;</div><div class="line"></div><div class="line">typeof a; // &quot;undefined&quot;</div><div class="line"></div><div class="line">var b = 42;</div><div class="line">var c;</div><div class="line"></div><div class="line">// 稍后</div><div class="line">b = c;</div><div class="line"></div><div class="line">typeof b; // &quot;undefined&quot;</div><div class="line">typeof c; // &quot;undefined&quot;</div></pre></td></tr></table></figure>
+<p><code>undefined</code>和<code>undeclared（未声明）</code>是两个不同的概念：</p>
+<p><code>undefined</code>是声明了这个变量，但是没有给它赋值；而<code>undeclared</code>是变量还未被声明。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var a;</div><div class="line"></div><div class="line">a; // undefined</div><div class="line">b; // ReferenceError: b is not defined</div></pre></td></tr></table></figure>
+<p>但浏览器对于<code>b</code>的错误提醒往往让人产生误会！</p>
+<p>还要注意以下情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a;</div><div class="line"></div><div class="line">typeof a; // &quot;undefined&quot;</div><div class="line"></div><div class="line">typeof b; // &quot;undefined&quot;</div></pre></td></tr></table></figure>
+<h4 id="typeof-Undeclared"><a href="#typeof-Undeclared" class="headerlink" title="typeof Undeclared"></a><code>typeof</code> Undeclared</h4><p><code>typeof</code>的未声明安全防范：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function doSomethingCool() &#123;</div><div class="line">	var helper =</div><div class="line">		(typeof FeatureXYZ !== &quot;undefined&quot;) ?</div><div class="line">		FeatureXYZ :</div><div class="line">		function() &#123; /*.. 默认的特性 ..*/ &#125;;</div><div class="line"></div><div class="line">	var val = helper();</div><div class="line">	// ..</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>检查，<code>FeatureXYZ</code>是否被声明。</p>
+<p>当其他人在他的程序中引入这段代码时，hi安全地检查是否已经定义了<code>FeatureXYZ</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">// 一个 IIFE（参见本系列的 *作用域与闭包* 中的“立即被调用的函数表达式”）</div><div class="line">(function()&#123;</div><div class="line">	function FeatureXYZ() &#123; /*.. my XYZ feature ..*/ &#125;</div><div class="line"></div><div class="line">	// 引入 `doSomethingCool(..)`</div><div class="line">	function doSomethingCool() &#123;</div><div class="line">		var helper =</div><div class="line">			(typeof FeatureXYZ !== &quot;undefined&quot;) ?</div><div class="line">			FeatureXYZ :</div><div class="line">			function() &#123; /*.. 默认的特性 ..*/ &#125;;</div><div class="line"></div><div class="line">		var val = helper();</div><div class="line">		// ..</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	doSomethingCool();</div><div class="line">&#125;)();</div></pre></td></tr></table></figure>
+<p>另一种安全检查方式是（称为“依赖注入”设计模式）：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function doSomethingCool(FeatureXYZ) &#123;</div><div class="line">	var helper = FeatureXYZ ||</div><div class="line">		function() &#123; /*.. 默认的特性 ..*/ &#125;;</div><div class="line"></div><div class="line">	var val = helper();</div><div class="line">	// ..</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h1 id="第二章：值"><a href="#第二章：值" class="headerlink" title="第二章：值"></a>第二章：值</h1><h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p><code>array</code>中的值可以是<code>string</code>、<code>object</code>、<code>number</code>、<code>array</code>（多维数组）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = [ 1, &quot;2&quot;, [3] ];</div><div class="line"></div><div class="line">a.length;		// 3    用length属性检测a的大小</div><div class="line">a[0] === 1;		// true</div><div class="line">a[2][0] === 3;	// true</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line"></div><div class="line">a.length;	// 0</div><div class="line"></div><div class="line">a[0] = 1;</div><div class="line">a[1] = &quot;2&quot;;</div><div class="line">a[2] = [ 3 ];</div><div class="line"></div><div class="line">a.length;	// 3</div></pre></td></tr></table></figure>
+<p>一个<code>delete</code>操作仅会移除一个值槽，并<strong>不会改变<code>length</code></strong>。</p>
+<p>创建离散的<code>array</code>会出现空的值槽：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = [];</div><div class="line">a[3] = 1;</div><div class="line">a.length;   // 4</div></pre></td></tr></table></figure>
+<p>在<code>array</code>上可以添加键/值属性，但是不会计算在<code>array</code>的<code>length</code>中：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line"></div><div class="line">a[0] = 1;</div><div class="line">a[&quot;foobar&quot;] = 2;</div><div class="line"></div><div class="line">a.length;		// 1</div><div class="line">a[&quot;foobar&quot;];	// 2</div><div class="line">a.foobar;		// 2</div></pre></td></tr></table></figure>
+<p>注意：当用数字转化为字符串来作为键时，他会被认为你想要使用<code>number</code>索引，而不是一个<code>string</code>键：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">var a = [ ];</div><div class="line"></div><div class="line">a[&quot;13&quot;] = 42;</div><div class="line"></div><div class="line">a.length; // 14</div></pre></td></tr></table></figure>
+<h3 id="类Array"><a href="#类Array" class="headerlink" title="类Array"></a>类Array</h3><p>函数为了像列表一样访问它的参数值，而暴露了 <code>arugumens</code> 对象（类 <code>array</code>，在 ES6 中被废弃了）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">	var arr = Array.prototype.slice.call( arguments );</div><div class="line">	arr.push( &quot;bam&quot; );</div><div class="line">	console.log( arr );</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo( &quot;bar&quot;, &quot;baz&quot; ); // [&quot;bar&quot;,&quot;baz&quot;,&quot;bam&quot;]</div></pre></td></tr></table></figure>
+<p>在 ES6 中，还有一种称为 <strong><code>Array.from(..)</code></strong> 的内建工具可以执行相同的任务：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">var arr = Array.from( arguments );</div><div class="line">...</div></pre></td></tr></table></figure>
+<h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>了解<code>string</code>和<code>array</code>的异同：</p>
+<p>（1）他们都有一个<code>length</code>属性，一个<code>indexOf(...)</code>方法（在ES5中仅<code>array</code>有），和一个<code>concat(...)</code>方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">a.length;							// 3</div><div class="line">b.length;							// 3</div><div class="line"></div><div class="line">a.indexOf( &quot;o&quot; );					// 1</div><div class="line">b.indexOf( &quot;o&quot; );					// 1</div><div class="line"></div><div class="line">var c = a.concat( &quot;bar&quot; );			// &quot;foobar&quot;</div><div class="line">var d = b.concat( [&quot;b&quot;,&quot;a&quot;,&quot;r&quot;] );	// [&quot;f&quot;,&quot;o&quot;,&quot;o&quot;,&quot;b&quot;,&quot;a&quot;,&quot;r&quot;]</div><div class="line"></div><div class="line">a === c;							// false</div><div class="line">b === d;							// false</div><div class="line"></div><div class="line">a;									// &quot;foo&quot;</div><div class="line">b;									// [&quot;f&quot;,&quot;o&quot;,&quot;o&quot;]</div></pre></td></tr></table></figure>
+<p>（2）<code>string</code>是不可变的，没有一个方法可以原地修改它的内容，而是创建并返回一个新的<code>string</code>。但<code>array</code>可以原地修改。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">c = a.toUpperCase();</div><div class="line">a === c;	// false</div><div class="line">a;			// &quot;foo&quot;</div><div class="line">c;			// &quot;FOO&quot;</div><div class="line"></div><div class="line">b.push( &quot;!&quot; );    // 正在数组中加入&apos;!&apos;</div><div class="line">b;			// [&quot;f&quot;,&quot;O&quot;,&quot;o&quot;,&quot;!&quot;]</div></pre></td></tr></table></figure>
+<p>（3）有些用于处理<code>array</code>的方法，在处理<code>string</code>时也很有用，虽然这些方法不属于<code>string</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">a.join;			// undefined    用指定的符号将每一个字符（元素）分割开，也可用于将数组连接成字符串</div><div class="line">a.map;			// undefined</div><div class="line"></div><div class="line">var c = Array.prototype.join.call( a, &quot;-&quot; );</div><div class="line">var d = Array.prototype.map.call( a, function(v)&#123;</div><div class="line">	return v.toUpperCase() + &quot;.&quot;;</div><div class="line">&#125; ).join( &quot;&quot; );   </div><div class="line"></div><div class="line">c;				// &quot;f-o-o&quot;</div><div class="line">d;				// &quot;F.O.O.&quot;</div></pre></td></tr></table></figure>
+<p>利用第三点这种思想来完成一次<code>string</code>的翻转：</p>
+<p>第一种；我们想利用<code>array</code>中的<code>reverse</code>方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &apos;foo&apos;;</div><div class="line">var b = Array.prototype.reverse.call(a);</div><div class="line">console.log(b);    // TypeError</div></pre></td></tr></table></figure>
+<p><strong>说明这种方式不行！</strong></p>
+<p>第二种：将字符串转化为数组，实现翻转后再连接成字符串</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var c = a</div><div class="line">	// 将 `a` 切分成一个字符的数组</div><div class="line">	.split( &quot;&quot; )    </div><div class="line">	// 翻转字符的数组</div><div class="line">	.reverse()</div><div class="line">	// 将字符的数组连接回一个字符串</div><div class="line">	.join( &quot;&quot; );</div><div class="line"></div><div class="line">c; // &quot;oof&quot;</div></pre></td></tr></table></figure>
+<p><strong>警告：</strong> 小心！这种方法对含有复杂（unicode）字符（星型字符、多字节字符等）的 <code>string</code> <strong>不起作用</strong>。你需要支持 unicode 的更精巧的工具库来准确地处理这种操作。在这个问题上可以咨询 Mathias Bynens 的作品：<em>Esrever</em>（<a href="https://github.com/mathiasbynens/esrever%EF%BC%89%E3%80%82" target="_blank" rel="external">https://github.com/mathiasbynens/esrever）。</a></p>
+<h2 id="Number"><a href="#Number" class="headerlink" title="Number"></a>Number</h2><p><strong>注意：JS中没有真正的整数！！！！！</strong></p>
+<p>在JS中，一个“整数”只是一个没有小数部分的小数值。<code>42.0</code>和<code>42</code>一样是整数。</p>
+<h3 id="数字的语法"><a href="#数字的语法" class="headerlink" title="数字的语法"></a>数字的语法</h3><p>小数部分的<code>0</code>，是可选的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = 0.42;</div><div class="line">var b = .42;</div></pre></td></tr></table></figure>
+<p><code>.</code>之后的小数部分是<code>0</code>，是可选的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var a = 42.0;</div><div class="line">var b = 42.;    // 极不常见，不建议使用</div></pre></td></tr></table></figure>
+<p>非常大或非常小的<code>number</code>将默认以指数形式输出，与<code>toExponential</code>方法的输出一样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = 5E10;</div><div class="line">a;					// 50000000000</div><div class="line">a.toExponential();	// &quot;5e+10&quot;</div><div class="line"></div><div class="line">var b = a * a;</div><div class="line">b;					// 2.5e+21</div><div class="line"></div><div class="line">var c = 1 / a;</div><div class="line">c;					// 2e-11</div></pre></td></tr></table></figure>
+<p><code>number</code>值可以访问内建在<code>Number.prototype</code>上的方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a = 42.59;</div><div class="line"></div><div class="line">// toFixed(...)指定小数位数</div><div class="line">a.toFixed( 0 ); // &quot;43&quot;</div><div class="line">a.toFixed( 1 ); // &quot;42.6&quot;</div><div class="line">a.toFixed( 2 ); // &quot;42.59&quot;</div><div class="line">a.toFixed( 3 ); // &quot;42.590&quot;</div><div class="line">a.toFixed( 4 ); // &quot;42.5900&quot;   自动加0</div></pre></td></tr></table></figure>
+<p>注意：输出为<code>string</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var a = 42.59;</div><div class="line"></div><div class="line">// toPrecision指定有效数字</div><div class="line">a.toPrecision( 1 ); // &quot;4e+1&quot;</div><div class="line">a.toPrecision( 2 ); // &quot;43&quot;</div><div class="line">a.toPrecision( 3 ); // &quot;42.6&quot;</div><div class="line">a.toPrecision( 4 ); // &quot;42.59&quot;</div><div class="line">a.toPrecision( 5 ); // &quot;42.590&quot;</div><div class="line">a.toPrecision( 6 ); // &quot;42.5900&quot;</div></pre></td></tr></table></figure>
+<p>也可以直接用数字来调用方法，但要注意格式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">// 不合法的语法：</div><div class="line">42.toFixed( 3 );	// SyntaxError</div><div class="line"></div><div class="line">// 这些都是合法的：</div><div class="line">(42).toFixed( 3 );	// &quot;42.000&quot;</div><div class="line">0.42.toFixed( 3 );	// &quot;0.420&quot;</div><div class="line">42..toFixed( 3 );	// &quot;42.000&quot;</div><div class="line">42 .toFixed(3); // &quot;42.000&quot;   注意空格</div></pre></td></tr></table></figure>
+<p>使用二进制、八进制、十六进制：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">0xf3; // 十六进制的: 243</div><div class="line">0Xf3; // 同上</div><div class="line"></div><div class="line">0363; // 八进制的: 243   在ES6+strict开始不允许使用，改用下面这种方式</div><div class="line">0o363</div></pre></td></tr></table></figure>
+<p>十六进制：0x</p>
+<p>八进制：0o</p>
+<p>二进制：0b</p>
+<h3 id="小数值"><a href="#小数值" class="headerlink" title="小数值"></a>小数值</h3><p>判等：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">0.1 + 0.2 === 0.3; // false</div></pre></td></tr></table></figure>
+<p>利用容差来改进得到我们想要的结果：</p>
+<p>在ES6中，使用容差值 <code>2^-52</code>（<code>2.220446049250313e-16</code>）预定义了<code>Number.EPSILON</code></p>
+<p>在ES6前安全地填补这个定义：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if(!Number.EPSILON) &#123;</div><div class="line">  Number.EPSILON = Math.pow(2, -52);   // Math.pow指数运算</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>利用<code>Number.EPSILON</code>来比较两个<code>number</code>的等价性：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">function numbersCloseEnoughToEqual(n1,n2) &#123;</div><div class="line">	return Math.abs( n1 - n2 ) &lt; Number.EPSILON;</div><div class="line">&#125;</div><div class="line"></div><div class="line">var a = 0.1 + 0.2;</div><div class="line">var b = 0.3;</div><div class="line"></div><div class="line">numbersCloseEnoughToEqual( a, b );					// true</div><div class="line">numbersCloseEnoughToEqual( 0.0000001, 0.0000002 );	// false</div></pre></td></tr></table></figure>
+<h3 id="安全整数范围"><a href="#安全整数范围" class="headerlink" title="安全整数范围"></a>安全整数范围</h3><p>对完全是 <code>number</code> 的“整数”而言有一个“安全”的值的范围，而且它要比 <code>Number.MAX_VALUE</code> 小得多。</p>
+<p>可以“安全地”被表示的最大整数（也就是说，可以保证被表示的值是实际可以无误地表示的）是<code>2^53 - 1</code>，也就是<code>9007199254740991</code>。</p>
+<p>在ES6中这个值实际上是自动预定义的，它是<code>Number.MAX_SAFE_INTEGER</code>。意料之中的是，还有一个最小值，<code>-9007199254740991</code>，它在ES6中定义为<code>Number.MIN_SAFE_INTEGER</code>。</p>
+<h4 id="测试整数"><a href="#测试整数" class="headerlink" title="测试整数"></a>测试整数</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Number.isInteger( 42 );		// true</div><div class="line">Number.isInteger( 42.000 );	// true</div><div class="line">Number.isInteger( 42.3 );	// false</div></pre></td></tr></table></figure>
+<p>为前ES6填补<code>Number.isInteger(...)</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">if (!Number.isInteger) &#123;</div><div class="line">	Number.isInteger = function(num) &#123;</div><div class="line">		return typeof num == &quot;number&quot; &amp;&amp; num % 1 == 0;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>要测试一个值是否是 <em>安全整数</em>，使用 ES6 定义的 <code>Number.isSafeInteger(..)</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Number.isSafeInteger( Number.MAX_SAFE_INTEGER );	// true</div><div class="line">Number.isSafeInteger( Math.pow( 2, 53 ) );			// false</div><div class="line">Number.isSafeInteger( Math.pow( 2, 53 ) - 1 );		// true</div></pre></td></tr></table></figure>
+<p>可以为前 ES6 浏览器填补 <code>Number.isSafeInteger(..)</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">if (!Number.isSafeInteger) &#123;</div><div class="line">	Number.isSafeInteger = function(num) &#123;</div><div class="line">		return Number.isInteger( num ) &amp;&amp;</div><div class="line">			Math.abs( num ) &lt;= Number.MAX_SAFE_INTEGER;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h2 id="特殊值"><a href="#特殊值" class="headerlink" title="特殊值"></a>特殊值</h2><p><code>NaN</code>永远不会和自己相等：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">NaN === NaN   // false</div></pre></td></tr></table></figure>
+<h3 id="特殊等价"><a href="#特殊等价" class="headerlink" title="特殊等价"></a>特殊等价</h3><p><code>-0</code>假装它和普通的正零相等：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">-0 === 0   // true</div></pre></td></tr></table></figure>
+<p>在 ES6 中，有一个新工具可以用于测试两个值的绝对等价性，而没有任何这些例外。它称为 <code>Object.is(..)</code>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var a = 2 / &quot;foo&quot;;</div><div class="line">var b = -3 * 0;</div><div class="line"></div><div class="line">Object.is( a, NaN );	// true</div><div class="line">Object.is( b, -0 );		// true</div><div class="line"></div><div class="line">Object.is( b, 0 );		// false</div></pre></td></tr></table></figure>
+<p>对于ES6前环境的填补：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">if (!Object.is) &#123;</div><div class="line">	Object.is = function(v1, v2) &#123;</div><div class="line">		// 测试 `-0`</div><div class="line">		if (v1 === 0 &amp;&amp; v2 === 0) &#123;</div><div class="line">			return 1 / v1 === 1 / v2;</div><div class="line">		&#125;</div><div class="line">		// 测试 `NaN`</div><div class="line">		if (v1 !== v1) &#123;</div><div class="line">			return v2 !== v2;</div><div class="line">		&#125;</div><div class="line">		// 其他情况</div><div class="line">		return v1 === v2;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/javaScript/" rel="tag"><i class="fa fa-tag"></i> javaScript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/07/关于prototype、-proto-、constructor/" rel="next" title="关于prototype、_proto_、constructor">
+                <i class="fa fa-chevron-left"></i> 关于prototype、_proto_、constructor
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/08/css相关/" rel="prev" title="css相关">
+                css相关 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Shirley" />
+          <p class="site-author-name" itemprop="name">Shirley</p>
+           
+              <p class="site-description motion-element" itemprop="description">Only when you plant the flowers can you really smell their fragrance.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#你不懂JS：类型与文法"><span class="nav-number">1.</span> <span class="nav-text">你不懂JS：类型与文法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第一章：类型"><span class="nav-number">2.</span> <span class="nav-text">第一章：类型</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#类型的重要意义"><span class="nav-number">2.1.</span> <span class="nav-text">类型的重要意义</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内建类型"><span class="nav-number">2.1.1.</span> <span class="nav-text">内建类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#值作为类型"><span class="nav-number">2.1.2.</span> <span class="nav-text">值作为类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#undefined-vs-undeclared"><span class="nav-number">2.1.2.1.</span> <span class="nav-text">undefined vs. undeclared</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#typeof-Undeclared"><span class="nav-number">2.1.2.2.</span> <span class="nav-text">typeof Undeclared</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#第二章：值"><span class="nav-number">3.</span> <span class="nav-text">第二章：值</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Array"><span class="nav-number">3.1.</span> <span class="nav-text">Array</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类Array"><span class="nav-number">3.1.1.</span> <span class="nav-text">类Array</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">3.2.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Number"><span class="nav-number">3.3.</span> <span class="nav-text">Number</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数字的语法"><span class="nav-number">3.3.1.</span> <span class="nav-text">数字的语法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小数值"><span class="nav-number">3.3.2.</span> <span class="nav-text">小数值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安全整数范围"><span class="nav-number">3.3.3.</span> <span class="nav-text">安全整数范围</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#测试整数"><span class="nav-number">3.3.3.1.</span> <span class="nav-text">测试整数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特殊值"><span class="nav-number">3.4.</span> <span class="nav-text">特殊值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#特殊等价"><span class="nav-number">3.4.1.</span> <span class="nav-text">特殊等价</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shirley</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共35.4k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
