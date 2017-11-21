@@ -112,7 +112,18 @@
 <meta property="og:image" content="http:/2017/11/08/css布局/relative.jpg">
 <meta property="og:image" content="http:/2017/11/08/css布局/fixed.jpg">
 <meta property="og:image" content="http:/2017/11/08/css布局/three.jpg">
-<meta property="og:updated_time" content="2017-11-21T12:20:15.188Z">
+<meta property="og:image" content="http:/2017/11/08/css布局/float.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/clear.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/circle.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/oval.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/triangle.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/border.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/border-1.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/border-2.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/triangle-topleft.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/trapezoid.jpg">
+<meta property="og:image" content="http:/2017/11/08/css布局/six.jpg">
+<meta property="og:updated_time" content="2017-11-21T12:33:58.116Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="css相关">
 <meta name="twitter:description" content="盒模型 如上图所示，这是一个盒模型中含有的属性： 在W3C标准下：盒模型中的width属性只包含content; 在IE浏览器下：盒模型中的width = content + padding + border;">
@@ -537,11 +548,11 @@
 <h3 id="清除浮动元素"><a href="#清除浮动元素" class="headerlink" title="清除浮动元素"></a>清除浮动元素</h3><p>为什么要清除浮动？</p>
 <p>当存在浮动时：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line">.container &#123;</div><div class="line">  width: 400px;</div><div class="line">  border: 2px solid #000;</div><div class="line">  padding: 5px;</div><div class="line">  background: pink;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.left &#123;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  background: #80C460;</div><div class="line">  float: left;</div><div class="line">&#125;</div><div class="line">.main &#123;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  background: red;</div><div class="line">  float: left;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.right &#123;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  background: blue;</div><div class="line">  float: left;</div><div class="line">&#125;</div><div class="line"></div><div class="line">&lt;div class=&quot;container&quot;&gt;</div><div class="line">  &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
-
+<img src="/2017/11/08/css布局/float.jpg" alt="float.jpg" title="">
 <p>如上图所示：父元素存在塌陷，由于子元素的浮动，使得父元素的高变为0。高度和margin以及背景属性都失效了<strong>，但是<code>padding</code>值不会受影响</strong>。</p>
 <h4 id="清除css浮动"><a href="#清除css浮动" class="headerlink" title="清除css浮动"></a>清除css浮动</h4><p>（1）添加新元素，应用<code>clear:both</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;container&quot;&gt;</div><div class="line">  &lt;div class=&quot;left&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;main&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;right&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">.clear &#123;</div><div class="line">  clear: both;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<img src="/2017/11/08/css布局/clear.jpg" alt="clear.jpg" title="">
 <p>优点：代码少，简单，浏览器兼容性好。</p>
 <p>缺点：需要添加大量无语义的html元素，代码不够优雅，后期不容易维护。</p>
 <p>（2） 父元素定义<code>overflow: auto;</code>或者<code>overflow:hidden</code></p>
@@ -550,28 +561,28 @@
 <p>伪元素，代表元素之后最近的一个元素</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">.container:after &#123;</div><div class="line">  clear: both;       // 清楚浮动</div><div class="line">  content: &apos;&apos;;       // 想要添加的内容</div><div class="line">  display: block;    // 将要添加的转化为块元素</div><div class="line">  height: 0;</div><div class="line">  visibility: hidden;   // 隐藏添加的内容</div><div class="line">&#125;</div><div class="line"></div><div class="line">.container &#123;</div><div class="line">  zoom: 1;   // 为了支持IE6</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <h3 id="用css画的基本图形"><a href="#用css画的基本图形" class="headerlink" title="用css画的基本图形"></a>用css画的基本图形</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;basic&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure>
-<h4 id="圆形"><a href="#圆形" class="headerlink" title="圆形"></a>圆形</h4>
+<h4 id="圆形"><a href="#圆形" class="headerlink" title="圆形"></a>圆形</h4><img src="/2017/11/08/css布局/circle.jpg" alt="circle.jpg" title="">
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.basic &#123;</div><div class="line">  width: 100px;</div><div class="line">  height: 100px;</div><div class="line">  background: #639263;</div><div class="line">  -moz-border-radius: 50%;</div><div class="line">  -webkit-border-radius: 50%;</div><div class="line">  border-radias: 50%;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h4 id="椭圆"><a href="#椭圆" class="headerlink" title="椭圆"></a>椭圆</h4>
+<h4 id="椭圆"><a href="#椭圆" class="headerlink" title="椭圆"></a>椭圆</h4><img src="/2017/11/08/css布局/oval.jpg" alt="oval.jpg" title="">
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.basic &#123;</div><div class="line">  width: 200px;</div><div class="line">  height: 100px;</div><div class="line">  background: #639263;</div><div class="line">  -moz-border-radius: 50%;</div><div class="line">  -webkit-border-radius: 50%;    // 利用百分比来确定两个半径</div><div class="line">  border-radias: 50%;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>解释：这里的<code>border-radius</code>是定义的横竖方向上的半径。</p>
-<h4 id="等腰锐角三角形"><a href="#等腰锐角三角形" class="headerlink" title="等腰锐角三角形"></a>等腰锐角三角形</h4>
+<h4 id="等腰锐角三角形"><a href="#等腰锐角三角形" class="headerlink" title="等腰锐角三角形"></a>等腰锐角三角形</h4><img src="/2017/11/08/css布局/triangle.jpg" alt="triangle.jpg" title="">
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.basic &#123;</div><div class="line">  width: 0;</div><div class="line">  height: 0;</div><div class="line">  border: 50px solid transparent;</div><div class="line">  border-bottom: </div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>原理：</p>
 <p>css中的<code>boder</code>其实是以等腰梯形的样式分布的：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.basic &#123;</div><div class="line">  width: 100px;     // 以W3C标准，border不包含在width中</div><div class="line">  height: 100px;    </div><div class="line">  border-top: 20px solid pink;</div><div class="line">  border-left: 20px solid red;</div><div class="line">  border-right: 20px solid blue;</div><div class="line">  border-bottom: 20px solid #639263;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<img src="/2017/11/08/css布局/border.jpg" alt="border.jpg" title="">
 <p>当某一边的border不存在时，它是这样的：</p>
-
+<img src="/2017/11/08/css布局/border-1.jpg" alt="border-1.jpg" title="">
 <p>当将width和height均设为0时：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">.basic &#123;</div><div class="line">  width: 0px;</div><div class="line">  height: 0px;</div><div class="line">  border-top: 50px solid pink;</div><div class="line">  border-left: 50px solid red;</div><div class="line">  border-right: 50px solid blue;</div><div class="line">  border-bottom: 50px solid #639263;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<img src="/2017/11/08/css布局/border-2.jpg" alt="border-2.jpg" title="">
 <h4 id="等腰直角"><a href="#等腰直角" class="headerlink" title="等腰直角"></a>等腰直角</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.basic &#123;</div><div class="line">  width: 0px;</div><div class="line">  height: 0px;</div><div class="line">  border-top: 100px solid #639263;</div><div class="line">  border-right: 100px solid transparent;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<img src="/2017/11/08/css布局/triangle-topleft.jpg" alt="triangle-topleft.jpg" title="">
 <h4 id="等腰梯形"><a href="#等腰梯形" class="headerlink" title="等腰梯形"></a>等腰梯形</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">.basic &#123;</div><div class="line">  width: 100px;</div><div class="line">  height: 0px;</div><div class="line">  border: 50px solid transparent;</div><div class="line">  border-bottom: 100px solid #639263;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<img src="/2017/11/08/css布局/trapezoid.jpg" alt="trapezoid.jpg" title="">
 <h4 id="六角星"><a href="#六角星" class="headerlink" title="六角星"></a>六角星</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line">.basic &#123;</div><div class="line">  width: 0px;</div><div class="line">  height: 0px;</div><div class="line">  position: relative;</div><div class="line">  border: 50px solid transparent;</div><div class="line">  border-bottom: 100px solid #639263;</div><div class="line">&#125;</div><div class="line">.basic:after &#123;</div><div class="line">  width: 0px;</div><div class="line">  height: 0px;</div><div class="line">  position: absolute;</div><div class="line">  border: 50px solid transparent;</div><div class="line">  border-top: 100px solid #639263;</div><div class="line">  content: &apos;&apos;;</div><div class="line">  top: 25px;</div><div class="line">  left: -50px;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-
+<img src="/2017/11/08/css布局/six.jpg" alt="six.jpg" title="">
 <h3 id="css选择器"><a href="#css选择器" class="headerlink" title="css选择器"></a>css选择器</h3><p><strong>（后面的知识点都是牛客网上css部分题的整理）</strong></p>
 <h4 id="选择器类型"><a href="#选择器类型" class="headerlink" title="选择器类型"></a>选择器类型</h4><p>基础选择器：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">*              #id</div><div class="line">p              p#id</div><div class="line">.class</div><div class="line">p.class</div></pre></td></tr></table></figure>
