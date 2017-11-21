@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="计算机网络," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="http与httpshttphttp状态码123451xx: 指示信息，表示请求已接受，继续处理。2xx: 成功，表示请求已被成功接收、理解、接受。3xx: 重定向，要完成请求必须进行更近一步的操作。4xx: 客户端错误，请求有语法错误或无法请求。5xx: 服务器错误，服务器未能实现合法的请求。 1234567200 OK             // 客户端请求成功400 Bad Reqques">
+<meta name="keywords" content="计算机网络">
+<meta property="og:type" content="article">
+<meta property="og:title" content="计算机网络相关">
+<meta property="og:url" content="http:/four27.com/2017/11/21/计算机网络相关/index.html">
+<meta property="og:site_name" content="Shirley&#39;s Blog">
+<meta property="og:description" content="http与httpshttphttp状态码123451xx: 指示信息，表示请求已接受，继续处理。2xx: 成功，表示请求已被成功接收、理解、接受。3xx: 重定向，要完成请求必须进行更近一步的操作。4xx: 客户端错误，请求有语法错误或无法请求。5xx: 服务器错误，服务器未能实现合法的请求。 1234567200 OK             // 客户端请求成功400 Bad Reqques">
+<meta property="og:image" content="http:/four27.com/2017/11/21/计算机网络相关/images/https机制流程.jpg">
+<meta property="og:updated_time" content="2017-11-21T13:00:47.250Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="计算机网络相关">
+<meta name="twitter:description" content="http与httpshttphttp状态码123451xx: 指示信息，表示请求已接受，继续处理。2xx: 成功，表示请求已被成功接收、理解、接受。3xx: 重定向，要完成请求必须进行更近一步的操作。4xx: 客户端错误，请求有语法错误或无法请求。5xx: 服务器错误，服务器未能实现合法的请求。 1234567200 OK             // 客户端请求成功400 Bad Reqques">
+<meta name="twitter:image" content="http:/four27.com/2017/11/21/计算机网络相关/images/https机制流程.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http:/four27.com/2017/11/21/计算机网络相关/"/>
+
+
+
+
+
+  <title>计算机网络相关 | Shirley's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shirley's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http:/four27.com/2017/11/21/计算机网络相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirley">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirley's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">计算机网络相关</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-21T20:59:33+08:00">
+                2017-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/计算机网络/" itemprop="url" rel="index">
+                    <span itemprop="name">计算机网络</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="http与https"><a href="#http与https" class="headerlink" title="http与https"></a>http与https</h1><h2 id="http"><a href="#http" class="headerlink" title="http"></a>http</h2><h3 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">1xx: 指示信息，表示请求已接受，继续处理。</div><div class="line">2xx: 成功，表示请求已被成功接收、理解、接受。</div><div class="line">3xx: 重定向，要完成请求必须进行更近一步的操作。</div><div class="line">4xx: 客户端错误，请求有语法错误或无法请求。</div><div class="line">5xx: 服务器错误，服务器未能实现合法的请求。</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">200 OK             // 客户端请求成功</div><div class="line">400 Bad Reqquest   // 客户端请求有语法错误，不能被服务器所理解</div><div class="line">401 Unauthorized   // 请求未授权</div><div class="line">403 Forbidden      // 服务器收到请求，但决绝提供服务</div><div class="line">404 Not Found      // 请求资源不存在</div><div class="line">500 Internal Sever Error    // 服务器发生不可预期的错误</div><div class="line">503 Server Unvaliable   // 服务器不能处理客户端请求，一段时间后可能回复正常</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<h3 id="什么是协议"><a href="#什么是协议" class="headerlink" title="什么是协议"></a>什么是协议</h3><p>两台计算机之间进行通信必须遵守的规则。</p>
+<h3 id="URL"><a href="#URL" class="headerlink" title="URL"></a>URL</h3><p>统一资源定位符，标志网络上某一个资源的位置。</p>
+<h3 id="请求消息组成（request）"><a href="#请求消息组成（request）" class="headerlink" title="请求消息组成（request）"></a>请求消息组成（request）</h3><ul>
+<li>请求行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">GET http://www.cnblogs.com/  HTTP/1.1</div><div class="line">||</div><div class="line">method uri http -v</div><div class="line"></div><div class="line">method：请求方法</div><div class="line">uri：要求访问的资源对象</div><div class="line">http-v: http版本</div></pre></td></tr></table></figure>
+<ul>
+<li>消息报头</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">Host: www.someschool.edu   // 被请求资源的主机和端口号，通常从HTTP的URL中提取出来 </div><div class="line">Connection: close          // 连接状态</div><div class="line">User-agent: Mozilla/5.0    // 浏览器版本和名称</div><div class="line">Accept: text/html          // 浏览器可以接受的媒体类型，这里指可以接受html文档</div><div class="line">Accept-language: fr        // 客户端接受的语言类型</div><div class="line">Accept-Encoding: gzip      // 浏览器可以接受的编码方式</div><div class="line">cache-control: no-cache    // 指定遵循的缓存机制，no-cache表示所有内容都不会被缓存</div><div class="line">cookie：                   // 存放在cookie中的相应内容</div><div class="line">Content-Length: 60         // 发送个服务器的数据长度</div><div class="line">Content-Type: application/x-www-form-urlencoded</div></pre></td></tr></table></figure>
+<ul>
+<li>空行</li>
+<li>请求正文</li>
+</ul>
+<p>get请求没有请求正文</p>
+<h3 id="响应消息组成（response）"><a href="#响应消息组成（response）" class="headerlink" title="响应消息组成（response）"></a>响应消息组成（response）</h3><ul>
+<li>响应行</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HTTP/1.1 200 ok</div><div class="line"></div><div class="line">HTTP版本 + 状态码 + 状态消息</div></pre></td></tr></table></figure>
+<ul>
+<li>响应头</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">Connection: close                               // 连接状态</div><div class="line">Date: Tue, 09 Aug 2011 15:44:04 GMT             // 消息生成的具体时间</div><div class="line">Server: Apache/2.2.3(CentOS)                    // 服务器名称</div><div class="line">Last-Modified: Tue, 09 Aug 2011 15:11:03 GMT    // 最近一次修改时间</div><div class="line">Conten-Length: 6821                             // 响应消息长度</div><div class="line">Expires: Date:Sat,11 Feb 2012 11:35:14 GMT      // 缓存过期时间</div><div class="line">Content-Type: text/html   </div><div class="line">Set-Cookie: sc=4c31223a;path=/；domain=.acookie.taobao.com   // 用于把cookie发送给浏览器</div></pre></td></tr></table></figure>
+<ul>
+<li>空行</li>
+<li>响应正文</li>
+</ul>
+<h2 id="https"><a href="#https" class="headerlink" title="https"></a>https</h2><h3 id="加密算法"><a href="#加密算法" class="headerlink" title="加密算法"></a>加密算法</h3><p><strong>对称加密</strong>：加密和解密使用相同的加密算法，加密秘钥可以从解密秘钥中推算出来，解密秘钥也可以从加密秘钥中推算出来。在大多数堆成加密中，加密秘钥和解密密钥相同，所以也叫作单密钥算法。加密和解密使用同一个密钥。</p>
+<p><strong>非对称加密</strong>：需要两个密钥，一个是公开的，一个是私有的。加密解密使用不同的密钥。</p>
+<p><strong>摘要算法</strong>：数字摘要采用单项hash函数将需要加密的明文摘要成一串固定长度的密文。这一串密文又称为数字指纹，它有固定的长度，而且不同的明文摘要成密文，其结果总是不同的，而同样的明文其摘要必定一致。“数字摘要“是https能确保数据完整性和防篡改的根本原因。</p>
+<p><strong>数字签名</strong>：是非对称密钥加解密和数字摘要算法的一种应用，发送者将明文通过hash函数来生成摘要信息，再用私钥进行加密生成数字签名，将这个数字签名和原文一起发送给服务器。服务器将接收到的数字签名利用发送者提供的公钥进行解密，得到一个摘要信息，再将收到的原文利用hash函数生成摘要，与前一个摘要进行比较。如果两个摘要相同，那么收到的信息是完整的，发送过程中没有被修改。</p>
+<p>明文 -&gt; hash函数 -&gt; 摘要信息 -&gt; 私钥加密 -&gt; 数字签名</p>
+<p>数字签名的作用：</p>
+<p>1、能确定信息是由正确的发送者签名发送出来的，因为被人冒充不了发送者的签名。</p>
+<p>2、确定消息的完整性。</p>
+<h3 id="SSL-TLS"><a href="#SSL-TLS" class="headerlink" title="SSL/TLS"></a>SSL/TLS</h3><p>SSL：用以保障数据在网络上安全传输。利用数据加密技术，可以保证数据在网络上传输不会被截取。</p>
+<p>SSL/TLS作用：</p>
+<p>1、认证用户和服务器，确保数据发送到正确的客户机和服务器；</p>
+<p>2、加密数据以防止数据中途被窃取；</p>
+<p>3、维护数据的完整性，确保数据在传输过程中不被修改。</p>
+<h3 id="https机制流程"><a href="#https机制流程" class="headerlink" title="https机制流程"></a>https机制流程</h3><p><img src="images/https机制流程.jpg" alt=""></p>
+<p>（1）客户端请求建立连接；</p>
+<p>（2）服务器将SSL证书发送给客户端。</p>
+<p>（3）客户端首先对证书的所有者和有效期限等信息进行校验，浏览器在操作系统中查找内置的可信任的证书发布机构CA。与服务器证书的发布者CA进行比较，用于校验证书是否由合法机构发布。如果不合法，就报错。如果合法，就从操作系统中取出证书颁发者CA的公钥，然后对证书中的签名进行解密。浏览器再使用相同的hash算法对服务器发送的证书进行hash计算。与解密后的信息进行比较。如果一致，则SSL证书合法。</p>
+<p>（4）然后客户端利用公钥对采用对称加密这一信息，以及对称加密算法和对称加密秘钥进行加密后传给服务器。</p>
+<p>（5）服务器收到信息后采用私钥解密，提取出对称加密算法和对称秘钥后，回复客户端。</p>
+<p>（6）然后它们就遵守指定的对称加密算法进行信息传输。</p>
+<h2 id="http和https的区别"><a href="#http和https的区别" class="headerlink" title="http和https的区别"></a>http和https的区别</h2><p>1、http传输是明文传输，无法验证客户端和服务器的身份，是不安全的，很容易遭到攻击。但https中所有传输信息都经过对称加密，SSL本身使用非对称加密，可以有效地防止攻击。</p>
+<p>2、http协议运行在TCP上，https运行在TLS/SSL上，TLS/SSL运行在TCP上。</p>
+<p>3、http的默认端口为80，https的默认端口为443。</p>
+<h1 id="TCP三次握手四次握手"><a href="#TCP三次握手四次握手" class="headerlink" title="TCP三次握手四次握手"></a>TCP三次握手四次握手</h1><p>握手：</p>
+<p>1、客户端发送SYN数据包给服务器，请求连接。</p>
+<p>2、服务器收到SYN数据包后，回传SYN/ACK数据包，以表示已经收到了请求。</p>
+<p>3、客户端发送ACK，以表示握手结束。</p>
+<p>挥手：</p>
+<p>1、客户端发送FIN数据包给服务器，请求断开连接。</p>
+<p>2、服务器收到FIN数据包，回复ACK数据包给客户端。</p>
+<p>3、当服务器数据传输结束后，传送FIN数据包给客户端，表示可以断开连接了。</p>
+<p>4、客户端回复ACK数据包，告诉服务器已经知道可以断开了。</p>
+<h1 id="AJAX工作原理"><a href="#AJAX工作原理" class="headerlink" title="AJAX工作原理"></a>AJAX工作原理</h1><p>通过创建XmlHttpRequest对象向服务器发送异步请求，从服务器获取数据，然后使用js来操作DOM更新页面的数据。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/计算机网络/" rel="tag"><i class="fa fa-tag"></i> 计算机网络</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/21/js相关（杂七杂八）/" rel="next" title="js相关（杂七杂八）">
+                <i class="fa fa-chevron-left"></i> js相关（杂七杂八）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Shirley" />
+          <p class="site-author-name" itemprop="name">Shirley</p>
+           
+              <p class="site-description motion-element" itemprop="description">Only when you plant the flowers can you really smell their fragrance.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#http与https"><span class="nav-number">1.</span> <span class="nav-text">http与https</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#http"><span class="nav-number">1.1.</span> <span class="nav-text">http</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http状态码"><span class="nav-number">1.1.1.</span> <span class="nav-text">http状态码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是协议"><span class="nav-number">1.1.2.</span> <span class="nav-text">什么是协议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#URL"><span class="nav-number">1.1.3.</span> <span class="nav-text">URL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#请求消息组成（request）"><span class="nav-number">1.1.4.</span> <span class="nav-text">请求消息组成（request）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#响应消息组成（response）"><span class="nav-number">1.1.5.</span> <span class="nav-text">响应消息组成（response）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#https"><span class="nav-number">1.2.</span> <span class="nav-text">https</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#加密算法"><span class="nav-number">1.2.1.</span> <span class="nav-text">加密算法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SSL-TLS"><span class="nav-number">1.2.2.</span> <span class="nav-text">SSL/TLS</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#https机制流程"><span class="nav-number">1.2.3.</span> <span class="nav-text">https机制流程</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#http和https的区别"><span class="nav-number">1.3.</span> <span class="nav-text">http和https的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#TCP三次握手四次握手"><span class="nav-number">2.</span> <span class="nav-text">TCP三次握手四次握手</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AJAX工作原理"><span class="nav-number">3.</span> <span class="nav-text">AJAX工作原理</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shirley</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共46.3k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="js基础," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="箭头函数（1）更简洁的语法1234567891011121314function functionName (params) &amp;#123;  return statement;&amp;#125;箭头函数：(params) =&amp;gt; &amp;#123;statement&amp;#125;;当参数只有一个时，可以写成：params =&amp;gt; &amp;#123;statement&amp;#125;;当没有参数时：() =&amp;gt;">
+<meta name="keywords" content="js基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="js相关（杂七杂八）">
+<meta property="og:url" content="http:/four27.com/2017/11/21/js相关（杂七杂八）/index.html">
+<meta property="og:site_name" content="Shirley&#39;s Blog">
+<meta property="og:description" content="箭头函数（1）更简洁的语法1234567891011121314function functionName (params) &amp;#123;  return statement;&amp;#125;箭头函数：(params) =&amp;gt; &amp;#123;statement&amp;#125;;当参数只有一个时，可以写成：params =&amp;gt; &amp;#123;statement&amp;#125;;当没有参数时：() =&amp;gt;">
+<meta property="og:updated_time" content="2017-11-21T12:58:44.878Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="js相关（杂七杂八）">
+<meta name="twitter:description" content="箭头函数（1）更简洁的语法1234567891011121314function functionName (params) &amp;#123;  return statement;&amp;#125;箭头函数：(params) =&amp;gt; &amp;#123;statement&amp;#125;;当参数只有一个时，可以写成：params =&amp;gt; &amp;#123;statement&amp;#125;;当没有参数时：() =&amp;gt;">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http:/four27.com/2017/11/21/js相关（杂七杂八）/"/>
+
+
+
+
+
+  <title>js相关（杂七杂八） | Shirley's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Shirley's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http:/four27.com/2017/11/21/js相关（杂七杂八）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Shirley">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Shirley's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">js相关（杂七杂八）</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-11-21T20:57:35+08:00">
+                2017-11-21
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/js基础/" itemprop="url" rel="index">
+                    <span itemprop="name">js基础</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><h4 id="（1）更简洁的语法"><a href="#（1）更简洁的语法" class="headerlink" title="（1）更简洁的语法"></a>（1）更简洁的语法</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">function functionName (params) &#123;</div><div class="line">  return statement;</div><div class="line">&#125;</div><div class="line"></div><div class="line">箭头函数：</div><div class="line">(params) =&gt; &#123;statement&#125;;</div><div class="line"></div><div class="line">当参数只有一个时，可以写成：</div><div class="line">params =&gt; &#123;statement&#125;;</div><div class="line">当没有参数时：</div><div class="line">() =&gt; &#123;statement&#125;;</div><div class="line"></div><div class="line">当返回的函数是一个运算表达式时，可以简化为： </div><div class="line">params =&gt; statement;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">var double = num =&gt; num * 2;</div><div class="line">double(2)；  // 4</div></pre></td></tr></table></figure>
+<h4 id="（2）箭头函数中的this"><a href="#（2）箭头函数中的this" class="headerlink" title="（2）箭头函数中的this"></a>（2）箭头函数中的<code>this</code></h4><p>箭头函数的<code>this</code>和调用时的上下文无关。而是在定义的时候就决定了，根据词法作用域来确定<code>this</code>的指向：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">function taskA() &#123;</div><div class="line">  this.name = &apos;hello&apos;</div><div class="line">  </div><div class="line">  var fn = function() &#123;</div><div class="line">    console.log(this)         // window</div><div class="line">    console.log(this.name)    // hello</div><div class="line">  &#125;</div><div class="line">  </div><div class="line">  var arrow_fn = () =&gt; &#123;</div><div class="line">    console.log(this)        // window</div><div class="line">    console.log(this.name)   // hello</div><div class="line">  &#125;</div><div class="line">  fn()</div><div class="line">  arrow_fn()</div><div class="line">&#125;</div><div class="line">taskA()</div></pre></td></tr></table></figure>
+<p>虽然普通函数<code>fu</code>的输出和箭头函数<code>arrow_fn</code>的输出相同，但是他们的<code>this</code>的确定方式却不同。</p>
+<p><code>fu</code>是在<strong>运行时产生</strong>的，由于我们直接调用的<code>fu</code>，所以它的<code>this</code>就指向<code>window</code>。</p>
+<p><code>arrow_fn</code>是根据词法作用域产生，与调用的位置无关。由于他自身没有<code>this</code>，于是便向外面一层查找<code>this</code>，这时在<code>taskA</code>中找到了<code>this</code>，于是直接继承了<code>taskA</code>的作用域。<code>taskA</code>是一个普通函数，所以它的<code>this</code>由调用的位置决定，所以，<code>this</code>指向<code>window</code>。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">function taskA() &#123;</div><div class="line">  this.name = &apos;hello&apos;</div><div class="line">  </div><div class="line">  var fn = function() &#123;</div><div class="line">    console.log(this)</div><div class="line">    console.log(this.name)</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  var arrow_fn = () =&gt; &#123;</div><div class="line">	console.log(this);</div><div class="line">	console.log(this.name)</div><div class="line">  &#125;</div><div class="line">  var obj = &#123;</div><div class="line">    name: &apos;haha&apos;,</div><div class="line">    fn: fn,</div><div class="line">	arrow_fn: arrow_fn</div><div class="line">  &#125; </div><div class="line">  obj.fn();           // obj   haha</div><div class="line">  obj.arrow_fn();     // window hello</div><div class="line">&#125;</div><div class="line">taskA()</div></pre></td></tr></table></figure>
+<p>其他案例：</p>
+<p>箭头函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">  field: &apos;hello&apos;,</div><div class="line">  getField: () =&gt; &#123;</div><div class="line">    console.log(this.field)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">obj.getField() // undefined</div></pre></td></tr></table></figure>
+<p>根据词法作用域，<code>getField</code>中的<code>this</code>指向全局，由于全局中没有<code>field</code>这个属性，所以返回<code>undefined</code>。</p>
+<p>普通函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var obj = &#123;</div><div class="line">  field: &apos;hello&apos;,</div><div class="line">  getField() &#123;</div><div class="line">    console.log(this.field)</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">obj.getField();    // hello</div></pre></td></tr></table></figure>
+<p>普通函数的<code>this</code>由运行的位置决定。</p>
+<h4 id="（3）箭头函数中的arguments"><a href="#（3）箭头函数中的arguments" class="headerlink" title="（3）箭头函数中的arguments"></a>（3）箭头函数中的<code>arguments</code></h4><p>箭头函数不暴露<code>arguments</code>对象，所以你没办法在箭头函数中使用<code>arguments.length</code>操作。在箭头函数中使用<code>arguments</code>指向的是其外层函数的<code>arguments</code>对象。</p>
+<p>如果一定要用<code>arguments</code>，可以试试剩余参数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  var fn = (...args) =&gt; args[0];   // ...剩余参数会将args转换为一个数组</div><div class="line">  return fn(2);</div><div class="line">&#125;</div><div class="line"></div><div class="line">foo(1);</div></pre></td></tr></table></figure>
+<h4 id="（4）箭头函数不能被当做构造函数"><a href="#（4）箭头函数不能被当做构造函数" class="headerlink" title="（4）箭头函数不能被当做构造函数"></a>（4）箭头函数不能被当做构造函数</h4><p>也就是箭头函数不能用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var fn = new (a =&gt; a);   // TypeError</div></pre></td></tr></table></figure>
+<h3 id="cookie"><a href="#cookie" class="headerlink" title="cookie"></a>cookie</h3><p>由于http是无状态协议，所以为了跟踪用户会话，就引入了cookie，用于存储用户的登录信息。</p>
+<p>cookie存在客户端，session存在服务器端。</p>
+<p><strong>cookie在与服务器端通信每次都会携带在HTTP头中。</strong></p>
+<p>cookie的默认生命周期为浏览器关闭就随之消失，你也可以自己设置一个生存期。</p>
+<p>cookie的缺点：</p>
+<p>（1）大小和数目受限制，服务器规定了一个域中cookie的数目。同时限制了每一个cookie的大小，不能超过4k。</p>
+<p>（2）存在安全性问题，容易被人拦截。</p>
+<p>（3）需要指定域，不能跨域。</p>
+<p>（4）有些浏览器不支持cookie或者会禁用cookie。</p>
+<p>（5）浪费带宽，每次请求都会携带在HTTP中发送出去。</p>
+<h4 id="cookie、localStorage、sessionStorage的区别"><a href="#cookie、localStorage、sessionStorage的区别" class="headerlink" title="cookie、localStorage、sessionStorage的区别"></a>cookie、localStorage、sessionStorage的区别</h4><p><strong>localstrorage</strong></p>
+<p>本地存储，用于存放一些数据在浏览器。</p>
+<p>特性：</p>
+<p>大小为5M，相比cookie来说，大得多。</p>
+<p>持久化存储，不会过期，除非手动删除。</p>
+<p>存在于客户端，不会发送到服务端，不参与服务器通信，减少了http请求次数。</p>
+<p><strong>sessionStorage</strong></p>
+<p>本地存储，用于存储临时数据，浏览器关闭数据就清空。其他用法和localStorage一样。</p>
+<h4 id="cookie、session、token的区别"><a href="#cookie、session、token的区别" class="headerlink" title="cookie、session、token的区别"></a>cookie、session、token的区别</h4><p>（1）session用于验证用户的身份， 服务器为了区分用户的身份就给每一个客户端分配了不同的<code>session ID</code>。这个<code>session ID</code>存储在<code>cookie</code>中。用户离开网站时这个<code>session</code>会被销毁。</p>
+<p>（2）token用于身份验证，由三部分组成，用户id + 生成时间 + sign。存在cookie中。</p>
+<p>（3）cookie数据存放在浏览器上，session数据存放在服务器上。</p>
+<h3 id="call、apply、bind的区别"><a href="#call、apply、bind的区别" class="headerlink" title="call、apply、bind的区别"></a><code>call</code>、<code>apply</code>、<code>bind</code>的区别</h3><p>（1）三者都可用于改变<code>this</code>的指向，都可以利用后续参数传参；</p>
+<p>（2）<code>call</code>和<code>apply</code>会立即执行，而<code>bind</code>返回的是一个函数，不会立即执行，要调用才会执行；</p>
+<p>（3）对于传参，他们的第一个参数都是<code>this</code>要指向的对象，但后续参数不同。<code>call</code>接受的是连续参数，<code>apply</code>接受的是数组参数。当参数数目不确定时建议使用<code>apply</code>。而对于<code>bind</code>它有两种参数传入方式：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a.bind(b, &apos;c&apos;, &apos;d&apos;)();</div><div class="line">或</div><div class="line">a.bind(b)(&apos;c&apos;, &apos;d&apos;);</div></pre></td></tr></table></figure>
+<h3 id="xss和csrf防御"><a href="#xss和csrf防御" class="headerlink" title="xss和csrf防御"></a>xss和csrf防御</h3><h4 id="xss的原理"><a href="#xss的原理" class="headerlink" title="xss的原理"></a>xss的原理</h4><p>跨站脚本攻击，采用某些手段，经恶意代码植入浏览器的页面代码中，从而对用户客户端实施攻击（代码注入）。</p>
+<p>因为是对浏览器进行攻击，所以植入的代码多为html和javascript。</p>
+<h4 id="xss危害"><a href="#xss危害" class="headerlink" title="xss危害"></a>xss危害</h4><p>（1）窃取浏览器中的cookie；</p>
+<p>（2）劫持流量实现恶意跳转。</p>
+<h4 id="xss攻击分类"><a href="#xss攻击分类" class="headerlink" title="xss攻击分类"></a>xss攻击分类</h4><h5 id="（1）反射型xss"><a href="#（1）反射型xss" class="headerlink" title="（1）反射型xss"></a>（1）反射型xss</h5><p>诱骗用户点击攻击的url，经过服务器响应后不加过滤，直接返回给前端。</p>
+<p>为非持久性攻击，即攻击相对于访问者是一次性的。</p>
+<h5 id="（2）存储型xss"><a href="#（2）存储型xss" class="headerlink" title="（2）存储型xss"></a>（2）存储型xss</h5><p>含有xss代码的输入被存储到数据库或存储文件上。当其他用户查看这段文本时，就会运行xss代码。</p>
+<p>为持久型攻击。</p>
+<h4 id="xss防范"><a href="#xss防范" class="headerlink" title="xss防范"></a>xss防范</h4><p>（1）对外部输入进行敏感过滤；（由前端和后台合力完成）</p>
+<p>（2）在显示的时候对敏感代码进行处理，不让他执行。（由前端单独完成）</p>
+<h4 id="csrf原理"><a href="#csrf原理" class="headerlink" title="csrf原理"></a>csrf原理</h4><p>跨站请求伪造，挟持用户在已登录的web界面上执行非本意的操作。</p>
+<p>通常来说，csrf是由xss来实现的。</p>
+<h4 id="csrf防范"><a href="#csrf防范" class="headerlink" title="csrf防范"></a>csrf防范</h4><p>（1）验证码，第三方无法获取到验证码，所以无法完成请求。</p>
+<p>（2）token</p>
+<p>原理都是导致请求失败。</p>
+<h4 id="两者的区别"><a href="#两者的区别" class="headerlink" title="两者的区别"></a>两者的区别</h4><p>xss主要是想办法获取该网站的cookie，就可以以别人的身份登录网站。</p>
+<p>csrf主要是在用户登录后挟持用于做一些非本意的操作。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/js基础/" rel="tag"><i class="fa fa-tag"></i> js基础</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/11/21/浏览器渲染/" rel="next" title="浏览器渲染">
+                <i class="fa fa-chevron-left"></i> 浏览器渲染
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/11/21/计算机网络相关/" rel="prev" title="计算机网络相关">
+                计算机网络相关 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="Shirley" />
+          <p class="site-author-name" itemprop="name">Shirley</p>
+           
+              <p class="site-description motion-element" itemprop="description">Only when you plant the flowers can you really smell their fragrance.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/index.html">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#箭头函数"><span class="nav-number">1.</span> <span class="nav-text">箭头函数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）更简洁的语法"><span class="nav-number">1.1.</span> <span class="nav-text">（1）更简洁的语法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）箭头函数中的this"><span class="nav-number">1.2.</span> <span class="nav-text">（2）箭头函数中的this</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（3）箭头函数中的arguments"><span class="nav-number">1.3.</span> <span class="nav-text">（3）箭头函数中的arguments</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（4）箭头函数不能被当做构造函数"><span class="nav-number">1.4.</span> <span class="nav-text">（4）箭头函数不能被当做构造函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie"><span class="nav-number">2.</span> <span class="nav-text">cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie、localStorage、sessionStorage的区别"><span class="nav-number">2.1.</span> <span class="nav-text">cookie、localStorage、sessionStorage的区别</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie、session、token的区别"><span class="nav-number">2.2.</span> <span class="nav-text">cookie、session、token的区别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#call、apply、bind的区别"><span class="nav-number">3.</span> <span class="nav-text">call、apply、bind的区别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#xss和csrf防御"><span class="nav-number">4.</span> <span class="nav-text">xss和csrf防御</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#xss的原理"><span class="nav-number">4.1.</span> <span class="nav-text">xss的原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xss危害"><span class="nav-number">4.2.</span> <span class="nav-text">xss危害</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xss攻击分类"><span class="nav-number">4.3.</span> <span class="nav-text">xss攻击分类</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#（1）反射型xss"><span class="nav-number">4.3.1.</span> <span class="nav-text">（1）反射型xss</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#（2）存储型xss"><span class="nav-number">4.3.2.</span> <span class="nav-text">（2）存储型xss</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#xss防范"><span class="nav-number">4.4.</span> <span class="nav-text">xss防范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#csrf原理"><span class="nav-number">4.5.</span> <span class="nav-text">csrf原理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#csrf防范"><span class="nav-number">4.6.</span> <span class="nav-text">csrf防范</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两者的区别"><span class="nav-number">4.7.</span> <span class="nav-text">两者的区别</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Shirley</span>
+</div>
+
+<div class="powered-by">
+<i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+  本站访客数:<span id="busuanzi_value_site_uv"></span>
+</span>
+</div>
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共46.3k字</span>
+</div>
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+  
+  <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
